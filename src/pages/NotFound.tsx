@@ -51,11 +51,12 @@ const NotFound = () => {
           </button>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-5 gap-4 max-w-2xl mx-auto">
           {[
             { name: 'Home', path: '/' },
             { name: 'About', path: '/about' },
             { name: 'Services', path: '/services' },
+            { name: 'Portfolio', path: '/portfolio' },
             { name: 'Contact', path: '/contact' },
           ].map((link, index) => (
             <Link
