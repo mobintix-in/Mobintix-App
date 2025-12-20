@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
