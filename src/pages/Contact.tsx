@@ -68,7 +68,7 @@ const Contact = () => {
     {
       icon: <Clock size={24} />,
       title: 'Business Hours',
-      content: 'Mon - Fri: 9:00AM - 6:30PM',
+      content: 'Mon - Fri : 9:00AM - 6:30PM',
       link: 'https://share.google/pkt6dac9oU8Z76F5S',
     },
   ];
