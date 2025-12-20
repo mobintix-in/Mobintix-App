@@ -67,7 +67,7 @@ const Home = () => {
             }`}
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
-              MOBINTIX<span className="text-gray-400">.</span>
+              MOBINTIX INFOTECH<span className="text-gray-400">.</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-3xl mx-auto leading-relaxed">
               Transforming Ideas Into Digital Excellence

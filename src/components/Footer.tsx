@@ -62,13 +62,6 @@ const Footer = () => {
             </ul>
             <div className="flex space-x-4 mt-4">
               <a
-                href="https://share.google/pm9WT6O2qJqxRCiXt"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-                aria-label="google map"
-              >
-                <MapPin size={20} />
-              </a>
-              <a
                 href="https://www.linkedin.com/company/mobintix/"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label="LinkedIn"
@@ -95,13 +88,6 @@ const Footer = () => {
                 aria-label="facebook"
               >
                 <Facebook size={20} />
-              </a>
-              <a
-                href="https://www.instagram.com/mobintix.infotech"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-                aria-label="Instagram"
-              >
-                <Twitter size={20} />
               </a>
             </div>
           </div>
