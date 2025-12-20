@@ -1,23 +1,27 @@
-import { useEffect, useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitMessage, setSubmitMessage] = useState("");
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -27,49 +31,51 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitMessage('');
+    setSubmitMessage("");
 
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    setSubmitMessage('Thank you for your message! We will get back to you soon.');
+    setSubmitMessage(
+      "Thank you for your message! We will get back to you soon."
+    );
     setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
     });
     setIsSubmitting(false);
 
     setTimeout(() => {
-      setSubmitMessage('');
+      setSubmitMessage("");
     }, 5000);
   };
 
   const contactInfo = [
     {
       icon: <Mail size={24} />,
-      title: 'Email Us',
-      content: 'info@mobintix.com',
-      link: 'mailto:mobintix@gmail.com',
+      title: "Email Us",
+      content: "info@mobintix.com",
+      link: "mailto:mobintix@gmail.com",
     },
     {
       icon: <Phone size={24} />,
-      title: 'Call Us',
-      content: '+91 94093 83803',
-      link: 'tel:919409383803',
+      title: "Call Us",
+      content: "+91 94093 83803",
+      link: "tel:919409383803",
     },
     {
       icon: <MapPin size={24} />,
-      title: 'Visit Us',
-      content: '95, Krishna Residency, Surat, Gujarat 394190',
-      link: 'https://share.google/pkt6dac9oU8Z76F5S',
+      title: "Visit Us",
+      content: "95, Krishna Residency, Surat, Gujarat 394190",
+      link: "https://share.google/pkt6dac9oU8Z76F5S",
     },
     {
       icon: <Clock size={24} />,
-      title: 'Business Hours',
-      content: 'Mon - Fri : 9:00AM - 6:30PM',
-      link: 'https://share.google/pkt6dac9oU8Z76F5S',
+      title: "Business Hours",
+      content: "Mon - Fri: 9AM - 6PM",
+      link: "https://share.google/pkt6dac9oU8Z76F5S",
     },
   ];
 
@@ -79,12 +85,17 @@ const Contact = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div
             className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
             }`}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Get In Touch</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Get In Touch
+            </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Have a project in mind? Let's discuss how we can help bring your vision to life.
+              Have a project in mind? Let's discuss how we can help bring your
+              vision to life.
             </p>
           </div>
         </div>
@@ -118,22 +129,26 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div
               className="space-y-6"
-              style={{ animation: 'fadeInLeft 0.8s ease-out both' }}
+              style={{ animation: "fadeInLeft 0.8s ease-out both" }}
             >
-              <h2 className="text-4xl font-bold text-black mb-6">Send Us a Message</h2>
+              <h2 className="text-4xl font-bold text-black mb-6">
+                Send Us a Message
+              </h2>
               <p className="text-gray-600 leading-relaxed">
-                Fill out the form below and we'll get back to you as soon as possible. We're here to answer your questions and discuss your project needs.
+                Fill out the form below and we'll get back to you as soon as
+                possible. We're here to answer your questions and discuss your
+                project needs.
               </p>
 
               <div className="bg-black text-white p-8">
                 <h3 className="text-2xl font-bold mb-4">Why Work With Us?</h3>
                 <ul className="space-y-3">
                   {[
-                    'Fast response time within 24 hours',
-                    'Experienced team of professionals',
-                    'Transparent pricing and timelines',
-                    'Dedicated project manager',
-                    'Ongoing support and maintenance',
+                    "Fast response time within 24 hours",
+                    "Experienced team of professionals",
+                    "Transparent pricing and timelines",
+                    "Dedicated project manager",
+                    "Ongoing support and maintenance",
                   ].map((item, index) => (
                     <li key={index} className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-white"></div>
@@ -146,11 +161,14 @@ const Contact = () => {
 
             <div
               className="bg-gray-50 p-8"
-              style={{ animation: 'fadeInRight 0.8s ease-out both' }}
+              style={{ animation: "fadeInRight 0.8s ease-out both" }}
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-black mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-semibold text-black mb-2"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -166,7 +184,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-black mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-semibold text-black mb-2"
+                  >
                     Email Address *
                   </label>
                   <input
@@ -182,7 +203,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-black mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-semibold text-black mb-2"
+                  >
                     Phone Number
                   </label>
                   <input
@@ -197,7 +221,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-semibold text-black mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-semibold text-black mb-2"
+                  >
                     Subject *
                   </label>
                   <select
@@ -218,7 +245,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-black mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-semibold text-black mb-2"
+                  >
                     Message *
                   </label>
                   <textarea
@@ -259,15 +289,33 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* MAP */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-black mb-6">Find Us Here</h2>
-            <p className="text-gray-600 mb-8">Visit our office or reach out through any of our channels</p>
-            <div className="bg-gray-300 h-96 flex items-center justify-center">
-              <p className="text-gray-600 text-lg">Map Location Placeholder</p>
-            </div>
+        <div className="container mx-auto px-4 md:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-6">Find Us Here</h2>
+          <p className="text-gray-600 mb-8">
+            Visit our office at Mobintix Infotech, Surat
+          </p>
+
+          <div className="w-full h-96 rounded-xl overflow-hidden shadow-lg border">
+            <iframe
+              title="Mobintix Infotech Location"
+              src="https://www.google.com/maps?q=Mobintix%20Infotech%20Surat&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{ filter: "grayscale(100%) contrast(1.1)" }}
+            />
           </div>
+
+          <a
+            href="https://maps.app.goo.gl/6kx8gkDQSUka9UxY6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-6 px-6 py-3 bg-black text-white hover:bg-gray-800 transition"
+          >
+            Open in Google Maps
+          </a>
         </div>
       </section>
     </div>
