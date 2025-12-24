@@ -18,6 +18,7 @@ const Projects = () => {
       description: 'A comprehensive financial analytics platform with real-time data visualization',
       image: 'https://lh3.googleusercontent.com/p/AF1QipMrkIkUSNWST_0pZSzOSl8_bMQhG3OWtb3Ogclh=h305-no',
       tags: ['Wordpress', 'PHP', 'woocommerce'],
+      link: 'https://kgmediastudio.com/',
     },
     {
       title: 'FinTech Dashboard',
