@@ -32,7 +32,7 @@ const Admin = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(false);
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [sidebarOpen] = useState(true);
 
     // Login State
     const [email, setEmail] = useState("");
