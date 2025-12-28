@@ -13,7 +13,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isAdmin = location.pathname.startsWith('/admin');
+  const isAdmin = location.pathname.startsWith('/aryan');
 
   return (
     <div className="min-h-screen flex flex-col">
