@@ -35,33 +35,60 @@ const Footer = () => {
 
           <div>
             <h4 className="text-lg font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>Web Development</li>
-              <li>Mobile Apps</li>
-              <li>UI/UX Design</li>
-              <li>Cloud Solutions</li>
-              <li>Consulting</li>
+            <ul className="space-y-2">
+              {['Web Development', 'Mobile Apps', 'UI/UX Design', 'Cloud Solutions', 'Consulting'].map((service) => (
+                <li key={service}>
+                  <Link
+                    to="/services"
+                    className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                  >
+                    {service}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
-            <ul className="space-y-3 text-gray-400 text-sm">
-              <li className="flex items-center space-x-2">
-                <Mail size={16} />
-                <span>mobintix@gmail.com</span>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="mailto:mobintix@gmail.com"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                >
+                  <Mail size={16} />
+                  <span>mobintix@gmail.com</span>
+                </a>
               </li>
-              <li className="flex items-center space-x-2">
-                <Mail size={16} />
-                <span>mobintix@zohomail.in</span>
+              <li>
+                <a
+                  href="mailto:mobintix@zohomail.in"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                >
+                  <Mail size={16} />
+                  <span>mobintix@zohomail.in</span>
+                </a>
               </li>
-              <li className="flex items-center space-x-2">
-                <Phone size={16} />
-                <span>+91 94093 83803</span>
+              <li>
+                <a
+                  href="tel:919409383803"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                >
+                  <Phone size={16} />
+                  <span>+91 94093 83803</span>
+                </a>
               </li>
-              <li className="flex items-center space-x-2">
-                <MapPin size={16} />
-                <span>95, Krishna Residency, Surat, Gujarat 394190</span>
+              <li>
+                <a
+                  href="https://maps.app.goo.gl/6kx8gkDQSUka9UxY6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                >
+                  <MapPin size={16} className="flex-shrink-0" />
+                  <span>95, Krishna Residency, Surat, Gujarat 394190</span>
+                </a>
               </li>
             </ul>
             <div className="flex space-x-4 mt-4">
