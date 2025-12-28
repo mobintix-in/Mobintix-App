@@ -26,6 +26,7 @@ const Projects = () => {
       description: 'A comprehensive financial analytics platform with real-time data visualization',
       image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['React', 'TypeScript', 'D3.js'],
+      link: 'https://linktr.ee/mobintix',
     },
     {
       title: 'E-Commerce Mobile App',
@@ -33,6 +34,7 @@ const Projects = () => {
       description: 'Cross-platform shopping app with seamless checkout experience',
       image: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['React Native', 'Redux', 'Stripe'],
+      link: 'https://linktr.ee/mobintix',
     },
     {
       title: 'Healthcare Portal',
@@ -40,6 +42,7 @@ const Projects = () => {
       description: 'Patient management system with appointment scheduling and telemedicine',
       image: 'https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['Vue.js', 'Node.js', 'MongoDB'],
+      link: 'https://linktr.ee/mobintix',
     },
     {
       title: 'Brand Identity System',
@@ -47,6 +50,7 @@ const Projects = () => {
       description: 'Complete brand identity and design system for a tech startup',
       image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['Figma', 'UI/UX', 'Brand Design'],
+      link: 'https://linktr.ee/mobintix',
     },
     {
       title: 'Fitness Tracking App',
@@ -54,6 +58,7 @@ const Projects = () => {
       description: 'iOS and Android app for tracking workouts and nutrition',
       image: 'https://images.pexels.com/photos/4162487/pexels-photo-4162487.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['Flutter', 'Firebase', 'HealthKit'],
+      link: 'https://linktr.ee/mobintix',
     },
     {
       title: 'Luxury Fashion Store',
@@ -61,6 +66,7 @@ const Projects = () => {
       description: 'High-end e-commerce platform with AR try-on features',
       image: 'https://images.pexels.com/photos/972995/pexels-photo-972995.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['Next.js', 'Shopify', 'AR'],
+      link: 'https://linktr.ee/mobintix',
     },
     {
       title: 'SaaS Analytics Platform',
@@ -68,6 +74,7 @@ const Projects = () => {
       description: 'Business intelligence platform for enterprise clients',
       image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['Angular', 'Python', 'PostgreSQL'],
+      link: 'https://linktr.ee/mobintix',
     },
     {
       title: 'Restaurant Booking System',
@@ -75,6 +82,7 @@ const Projects = () => {
       description: 'Online reservation platform with table management',
       image: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['React', 'Express', 'MySQL'],
+      link: 'https://linktr.ee/mobintix',
     },
     {
       title: 'Travel Planning App',
@@ -82,6 +90,7 @@ const Projects = () => {
       description: 'AI-powered travel itinerary planner with booking integration',
       image: 'https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=800',
       tags: ['Swift', 'Kotlin', 'AI/ML'],
+      link: 'https://linktr.ee/mobintix',
     },
   ];
 
@@ -123,9 +132,12 @@ const Projects = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <div
+              <a
                 key={index}
-                className="group relative overflow-hidden bg-black cursor-pointer"
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-black cursor-pointer block"
                 style={{
                   animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                 }}
@@ -153,7 +165,7 @@ const Projects = () => {
                     <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={16} />
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
