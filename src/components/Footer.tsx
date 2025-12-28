@@ -9,9 +9,18 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold tracking-wider">
-              Mobintix Infotech<span className="text-gray-400">.</span>
-            </h3>
+            <div className="flex items-center gap-3 mb-4">
+              <Link to="/" className="block">
+                <img
+                  src="/logo.png"
+                  alt="Mobintix Infotech"
+                  className="h-10 w-auto object-contain"
+                />
+              </Link>
+              <h3 className="text-2xl font-bold tracking-wider">
+                Mobintix Infotech<span className="text-gray-400">.</span>
+              </h3>
+            </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Innovative technology solutions for modern businesses. We transform ideas into digital reality.
             </p>
