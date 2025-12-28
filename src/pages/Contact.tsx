@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 
+import { supabase } from "../lib/supabase";
+
+
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
@@ -33,23 +36,44 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitMessage("");
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // 1. Save to Supabase
+      const { error: supabaseError } = await supabase
+        .from('contact_messages')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            subject: formData.subject,
+            message: formData.message,
+          },
+        ]);
 
-    setSubmitMessage(
-      "Thank you for your message! We will get back to you soon."
-    );
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+      if (supabaseError) {
+        console.error('Supabase error:', supabaseError);
+        throw new Error('Failed to save message');
+      }
 
-    setTimeout(() => {
-      setSubmitMessage("");
-    }, 5000);
+      setSubmitMessage(
+        "Thank you for your message! We will get back to you soon."
+      );
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitMessage("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setSubmitMessage("");
+      }, 5000);
+    }
   };
 
   const contactInfo = [
