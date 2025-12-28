@@ -49,7 +49,11 @@ const Footer = () => {
             <ul className="space-y-3 text-gray-400 text-sm">
               <li className="flex items-center space-x-2">
                 <Mail size={16} />
-                <span>info@mobintix.com</span>
+                <span>mobintix@gmail.com</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Mail size={16} />
+                <span>mobintix@zohomail.in</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone size={16} />
