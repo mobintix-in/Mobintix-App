@@ -61,12 +61,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <MapPin size={16} />
-                <span> 95, Krishna Residency, Surat, Gujarat 394190</span>
+                <span>95, Krishna Residency, Surat, Gujarat 394190</span>
               </li>
             </ul>
             <div className="flex space-x-4 mt-4">
               <a
                 href="https://www.linkedin.com/company/mobintix/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label="LinkedIn"
               >
@@ -74,6 +76,8 @@ const Footer = () => {
               </a>
               <a
                 href="https://github.com/mobintix-in"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label="GitHub"
               >
@@ -81,6 +85,8 @@ const Footer = () => {
               </a>
               <a
                 href="https://www.instagram.com/mobintix.infotech"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label="Instagram"
               >
@@ -88,8 +94,10 @@ const Footer = () => {
               </a>
               <a
                 href="https://www.facebook.com/mobintix"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
-                aria-label="facebook"
+                aria-label="Facebook"
               >
                 <Facebook size={20} />
               </a>
