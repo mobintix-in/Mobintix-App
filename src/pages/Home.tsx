@@ -62,9 +62,8 @@ const Home = () => {
 
         <div className="container mx-auto px-4 md:px-8 z-10">
           <div
-            className={`text-center transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
               MOBINTIX INFOTECH<span className="text-gray-400">.</span>
