@@ -322,7 +322,7 @@ const Admin = () => {
                             </div>
                             <div>
                                 <h1 className="text-lg font-bold text-white tracking-wide leading-none">
-                                    Mobintix
+                                    Mobintix Infotech
                                 </h1>
                                 <div className="flex items-center gap-1.5 mt-1">
                                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
@@ -390,12 +390,11 @@ const Admin = () => {
                         </h2>
                     </div>
 
-                    <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-full pl-1 pr-4 py-1 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-full p-1 sm:pr-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                         <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-100">
                             <img src="/Mobintix.png" alt="Mobintix" className="w-full h-full object-contain p-1" />
                         </div>
                         <span className="text-sm font-medium text-gray-700 hidden sm:block">Administrator</span>
-                        <Settings size={16} className="text-gray-400 hidden sm:block" />
                     </div>
                 </header>
 
@@ -431,14 +430,57 @@ const Admin = () => {
                                 </div>
                             </div>
 
-                            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-                                <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                    <div className="w-2 h-2 rounded-full bg-green-500/50 animate-pulse"></div>
-                                    System Status
-                                </h3>
-                                <div className="p-4 bg-gray-50/80 rounded-xl border border-gray-100 text-sm text-gray-600 flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                                    All systems operational. Secure connection to Supabase active.
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                {/* System Status */}
+                                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+                                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-green-500/50 animate-pulse"></div>
+                                        System Status
+                                    </h3>
+                                    <div className="p-4 bg-gray-50/80 rounded-xl border border-gray-100 text-sm text-gray-600 flex items-center gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                                        All systems operational. Secure connection to Supabase active.
+                                    </div>
+                                </div>
+
+                                {/* Recent Messages Notification */}
+                                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 flex flex-col">
+                                    <div className="flex justify-between items-center mb-6">
+                                        <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+                                            <div className="relative">
+                                                <MessageSquare size={20} className="text-blue-600" />
+                                                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                                            </div>
+                                            Recent Messages
+                                        </h3>
+                                        <button
+                                            onClick={() => setActiveTab('messages')}
+                                            className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+                                        >
+                                            View All
+                                        </button>
+                                    </div>
+
+                                    {messages.length === 0 ? (
+                                        <p className="text-sm text-gray-400 italic">No new notifications.</p>
+                                    ) : (
+                                        <div className="space-y-4">
+                                            {messages.slice(0, 3).map((msg) => (
+                                                <div key={msg.id} className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100 cursor-pointer" onClick={() => setActiveTab('messages')}>
+                                                    <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs shrink-0">
+                                                        {msg.name.charAt(0).toUpperCase()}
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="flex justify-between items-start">
+                                                            <p className="text-sm font-semibold text-gray-900 truncate">{msg.name}</p>
+                                                            <span className="text-[10px] text-gray-400 whitespace-nowrap">{new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                                        </div>
+                                                        <p className="text-xs text-gray-600 truncate mt-0.5">{msg.subject}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -446,25 +488,25 @@ const Admin = () => {
 
                     {/* MESSAGES TAB */}
                     {activeTab === 'messages' && (
-                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="p-6 border-b border-gray-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div className="p-6 border-b border-gray-50 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 flex-wrap">
                                 <h3 className="text-xl font-bold text-gray-800">Inbox</h3>
-                                <div className="flex items-center gap-3 w-full sm:w-auto">
-                                    <div className="relative w-full sm:w-auto flex-1">
+                                <div className="flex items-center gap-3 w-full lg:w-auto flex-wrap sm:flex-nowrap">
+                                    <div className="relative w-full lg:w-auto flex-1 h-10">
                                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                                         <input
                                             type="text"
                                             placeholder="Search messages..."
-                                            className="w-full sm:w-64 pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            className="w-full sm:w-64 pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all h-full"
                                         />
                                     </div>
                                     <button
                                         onClick={handleExportMessages}
-                                        className="p-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium"
+                                        className="h-10 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium whitespace-nowrap"
                                         title="Export to Excel"
                                     >
                                         <Download size={18} />
-                                        <span className="hidden sm:inline">Export</span>
+                                        <span>Export</span>
                                     </button>
                                 </div>
                             </div>
@@ -475,108 +517,54 @@ const Admin = () => {
                                     <p>No messages yet.</p>
                                 </div>
                             ) : (
-                                <>
-                                    {/* Mobile View: Cards (Visible only on small screens) */}
-                                    <div className="block md:hidden bg-gray-50/50 p-4 space-y-4">
-                                        {messages.map((msg) => (
-                                            <div key={msg.id} className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
-                                                <div className="flex justify-between items-start mb-3">
-                                                    <div className="flex flex-col">
-                                                        <span className="font-bold text-gray-900">{msg.name}</span>
-                                                        <span className="text-xs text-gray-500">{new Date(msg.created_at).toLocaleString()}</span>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+                                    {messages.map((msg) => (
+                                        <div key={msg.id} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full group">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                                        {msg.name.charAt(0).toUpperCase()}
                                                     </div>
-                                                    <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
-                                                        {msg.subject}
-                                                    </span>
-                                                </div>
-
-                                                <div className="mb-3 space-y-1">
-                                                    <div className="text-sm text-gray-600 flex items-center gap-2">
-                                                        <span className="text-gray-400 w-12 text-xs uppercase font-bold">Email:</span>
-                                                        <span className="truncate">{msg.email}</span>
+                                                    <div>
+                                                        <h4 className="font-bold text-gray-900 leading-tight">{msg.name}</h4>
+                                                        <span className="text-xs text-gray-500">{new Date(msg.created_at).toLocaleDateString()}</span>
                                                     </div>
-                                                    {msg.phone && (
-                                                        <div className="text-sm text-gray-600 flex items-center gap-2">
-                                                            <span className="text-gray-400 w-12 text-xs uppercase font-bold">Phone:</span>
-                                                            {msg.phone}
-                                                        </div>
-                                                    )}
                                                 </div>
-
-                                                <div className="bg-gray-50 p-3 rounded-xl text-sm text-gray-700 mb-4 line-clamp-4 leading-relaxed">
-                                                    {msg.message}
-                                                </div>
-
-                                                <div className="flex justify-end pt-3 border-t border-gray-100">
-                                                    <button
-                                                        onClick={() => handleDeleteMessage(msg.id)}
-                                                        className="text-red-500 hover:text-red-700 text-sm font-medium flex items-center gap-1.5"
-                                                    >
-                                                        <Trash2 size={16} /> Delete
-                                                    </button>
-                                                </div>
+                                                <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-50 text-gray-600 border border-gray-100">
+                                                    {msg.subject}
+                                                </span>
                                             </div>
-                                        ))}
-                                    </div>
 
-                                    {/* Desktop & Tablet View: Table (Visible on MD screens and up) */}
-                                    <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-100">
-                                        <table className="w-full text-left border-collapse">
-                                            <thead>
-                                                <tr className="bg-gray-50/80 border-b border-gray-200">
-                                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Date</th>
-                                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Time</th>
-                                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Name</th>
-                                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Email</th>
-                                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Phone</th>
-                                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Subject</th>
-                                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider min-w-[300px]">Message</th>
-                                                    <th className="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody className="divide-y divide-gray-100 bg-white">
-                                                {messages.map((msg) => (
-                                                    <tr key={msg.id} className="hover:bg-blue-50/30 transition-colors group">
-                                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-medium">
-                                                            {new Date(msg.created_at).toLocaleDateString()}
-                                                        </td>
-                                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            {new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                                        </td>
-                                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                            {msg.name}
-                                                        </td>
-                                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono text-xs">
-                                                            {msg.email}
-                                                        </td>
-                                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            {msg.phone || '-'}
-                                                        </td>
-                                                        <td className="px-6 py-4 whitespace-nowrap">
-                                                            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 shadow-sm">
-                                                                {msg.subject}
-                                                            </span>
-                                                        </td>
-                                                        <td className="px-6 py-4">
-                                                            <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed min-w-[300px]" title={msg.message}>
-                                                                {msg.message}
-                                                            </p>
-                                                        </td>
-                                                        <td className="px-6 py-4 whitespace-nowrap text-right">
-                                                            <button
-                                                                onClick={() => handleDeleteMessage(msg.id)}
-                                                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
-                                                                title="Delete Message"
-                                                            >
-                                                                <Trash2 size={18} />
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </>
+                                            <div className="space-y-1 mb-4">
+                                                <div className="text-sm text-gray-500 flex items-center gap-2">
+                                                    <span className="font-medium text-xs uppercase tracking-wider text-gray-400 w-12">Email:</span>
+                                                    <span className="truncate text-gray-700">{msg.email}</span>
+                                                </div>
+                                                {msg.phone && (
+                                                    <div className="text-sm text-gray-500 flex items-center gap-2">
+                                                        <span className="font-medium text-xs uppercase tracking-wider text-gray-400 w-12">Phone:</span>
+                                                        <span className="text-gray-700">{msg.phone}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="bg-gray-50/50 p-4 rounded-xl text-sm text-gray-600 mb-4 flex-grow italic border border-gray-50">
+                                                "{msg.message}"
+                                            </div>
+
+                                            <div className="pt-4 border-t border-gray-50 flex justify-between items-center mt-auto">
+                                                <span className="text-xs text-gray-400 font-medium">{new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                                <button
+                                                    onClick={() => handleDeleteMessage(msg.id)}
+                                                    className="text-gray-400 hover:text-red-500 p-2 rounded-lg hover:bg-red-50 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                                                    title="Delete Message"
+                                                >
+                                                    <Trash2 size={18} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             )}
                         </div>
                     )}
