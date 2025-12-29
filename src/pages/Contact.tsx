@@ -84,6 +84,12 @@ const Contact = () => {
       link: "mailto:mobintix@gmail.com",
     },
     {
+      icon: <Mail size={24} />,
+      title: "Email Us",
+      content: "mobintix@zohomail.in",
+      link: "mailto:mobintix@zohomail.in",
+    },
+    {
       icon: <Phone size={24} />,
       title: "Call Us",
       content: "+91 94093 83803",
