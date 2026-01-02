@@ -1,8 +1,8 @@
 {
     "rewrites": [
         {
-            "source": "/(.*)",
-            "destination": "/"
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
         }
     ]
 }
