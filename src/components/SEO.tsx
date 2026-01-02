@@ -6,9 +6,10 @@ interface SEOProps {
     url?: string;
     image?: string;
     type?: string;
+    children?: React.ReactNode;
 }
 
-const SEO = ({ title, description, url, image, type = 'website' }: SEOProps) => {
+const SEO = ({ title, description, url, image, type = 'website', children }: SEOProps) => {
     const siteTitle = 'Mobintix Infotech';
     const fullTitle = `${title} | ${siteTitle}`;
     const baseUrl = 'https://mobintixinfotech.vercel.app';
@@ -37,6 +38,7 @@ const SEO = ({ title, description, url, image, type = 'website' }: SEOProps) => 
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={fullImage} />
+            {children}
         </Helmet>
     );
 };

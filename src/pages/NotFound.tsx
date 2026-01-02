@@ -15,7 +15,9 @@ const NotFound = () => {
       <SEO
         title="Page Not Found"
         description="The page you are looking for does not exist."
-      />
+      >
+        <meta name="robots" content="noindex" />
+      </SEO>
       <div
         className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
           }`}
