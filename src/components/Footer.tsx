@@ -107,6 +107,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label="LinkedIn"
+                title="LinkedIn"
               >
                 <Linkedin size={20} />
               </a>
@@ -116,24 +117,27 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label="GitHub"
+                title="GitHub"
               >
                 <Github size={20} />
               </a>
               <a
-                href="https://www.instagram.com/mobintix.infotech"
+                href="https://www.instagram.com/mobintix.infotech/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label="Instagram"
+                title="Instagram"
               >
                 <Instagram size={20} />
               </a>
               <a
-                href="https://www.facebook.com/mobintix"
+                href="https://www.facebook.com/mobintix/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label="Facebook"
+                title="Facebook"
               >
                 <Facebook size={20} />
               </a>
