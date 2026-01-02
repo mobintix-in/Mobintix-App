@@ -142,9 +142,10 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div
+              <Link
                 key={index}
-                className="group bg-white p-8 hover:bg-black transition-all duration-500 cursor-pointer"
+                to={feature.link}
+                className="group bg-white p-8 hover:bg-black transition-all duration-500 cursor-pointer block"
                 style={{
                   animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                 }}
@@ -158,7 +159,7 @@ const Home = () => {
                 <p className="text-gray-600 group-hover:text-gray-300 transition-colors duration-500">
                   {feature.description}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

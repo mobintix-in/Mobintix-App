@@ -47,6 +47,12 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/web-development" element={<Services />} />
+              <Route path="/mobile-apps" element={<Services />} />
+              <Route path="/ui-ux-design" element={<Services />} />
+              <Route path="/cloud-solutions" element={<Services />} />
+              <Route path="/digital-strategy" element={<Services />} />
+              <Route path="/security" element={<Services />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/aryan" element={<Admin />} />
