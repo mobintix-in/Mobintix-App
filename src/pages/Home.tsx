@@ -83,6 +83,7 @@ const Home = () => {
               <Link
                 to="/projects"
                 className="group bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300 flex items-center justify-center space-x-2"
+                title="View Our Work"
               >
                 <span>View Our Work</span>
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
@@ -90,6 +91,7 @@ const Home = () => {
               <Link
                 to="/contact"
                 className="group border-2 border-white text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+                title="Get In Touch"
               >
                 Get In Touch
               </Link>
@@ -165,6 +167,7 @@ const Home = () => {
           <Link
             to="/contact"
             className="inline-block bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300"
+            title="Contact Us Today"
           >
             Contact Us Today
           </Link>
