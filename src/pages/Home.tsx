@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Smartphone, Palette, Cloud, TrendingUp, Shield } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,6 +52,10 @@ const Home = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title="Innovative Technology Solutions"
+        description="Transforming ideas into digital excellence with cutting-edge technology solutions. Web Development, Mobile Apps, Cloud Solutions, and more."
+      />
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{

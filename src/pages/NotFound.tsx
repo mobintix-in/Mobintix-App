@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft, Search } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const NotFound = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,10 +12,13 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4">
+      <SEO
+        title="Page Not Found"
+        description="The page you are looking for does not exist."
+      />
       <div
-        className={`text-center transition-all duration-1000 ${
-          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}
+        className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
       >
         <div className="mb-8 relative">
           <h1 className="text-[200px] md:text-[300px] font-bold text-transparent bg-clip-text bg-gradient-to-b from-gray-700 to-gray-900 leading-none select-none">
@@ -56,7 +60,7 @@ const NotFound = () => {
             { name: 'Home', path: '/' },
             { name: 'About', path: '/about' },
             { name: 'Services', path: '/services' },
-            { name: 'Portfolio', path: '/portfolio' },
+            { name: 'Portfolio', path: '/projects' }, // Changed from /portfolio to /projects based on routes
             { name: 'Contact', path: '/contact' },
           ].map((link, index) => (
             <Link

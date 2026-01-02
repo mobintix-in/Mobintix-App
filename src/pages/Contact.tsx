@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 
 import { supabase } from "../lib/supabase";
+import SEO from '../components/SEO';
 
 
 const Contact = () => {
@@ -105,6 +106,11 @@ const Contact = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Mobintix Infotech. We are ready to discuss your next project and help you achieve your digital goals."
+        url="/contact"
+      />
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black text-white">
         <div className="container mx-auto px-4 md:px-8">
           <div

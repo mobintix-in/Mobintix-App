@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import SEO from '../components/SEO';
 
 interface Project {
   id: number;
@@ -53,6 +54,11 @@ const Projects = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title="Our Portfolio"
+        description="Explore Mobintix Infotech's portfolio of successful projects across Web, Mobile, Design, and E-commerce industries."
+        url="/projects"
+      />
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black text-white">
         <div className="container mx-auto px-4 md:px-8">
           <div

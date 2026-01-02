@@ -13,6 +13,7 @@ import {
   Settings,
   BarChart,
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Services = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -98,12 +99,16 @@ const Services = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title="Our Services"
+        description="Explore our comprehensive technology solutions including Web Development, Mobile Apps, UI/UX Design, Cloud Solutions, AI, and Digital Marketing."
+        url="/services"
+      />
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black text-white">
         <div className="container mx-auto px-4 md:px-8">
           <div
-            className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services</h1>
             <p className="text-xl text-gray-300 leading-relaxed">
