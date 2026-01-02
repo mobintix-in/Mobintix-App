@@ -15,31 +15,37 @@ const Home = () => {
       icon: <Code size={40} />,
       title: 'Web Development',
       description: 'Cutting-edge web solutions built with modern technologies',
+      link: '/web-development',
     },
     {
       icon: <Smartphone size={40} />,
       title: 'Mobile Apps',
       description: 'Native and cross-platform mobile applications',
+      link: '/mobile-apps',
     },
     {
       icon: <Palette size={40} />,
       title: 'UI/UX Design',
       description: 'Beautiful, intuitive interfaces that users love',
+      link: '/ui-ux-design',
     },
     {
       icon: <Cloud size={40} />,
       title: 'Cloud Solutions',
       description: 'Scalable cloud infrastructure and deployment',
+      link: '/cloud-solutions',
     },
     {
       icon: <TrendingUp size={40} />,
       title: 'Digital Strategy',
       description: 'Strategic planning for digital transformation',
+      link: '/digital-strategy',
     },
     {
       icon: <Shield size={40} />,
       title: 'Security',
       description: 'Enterprise-grade security and data protection',
+      link: '/security',
     },
   ];
 
