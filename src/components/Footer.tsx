@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4">
               <Link to="/" className="block">
                 <img
-                  src="/logo.png"
+                  src="/Mobintix.png"
                   alt="Mobintix Infotech"
                   className="h-10 w-auto object-contain"
                 />
