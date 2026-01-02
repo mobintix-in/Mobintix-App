@@ -16,6 +16,11 @@
             ],
             "destination": "https://mobintixinfotech.vercel.app/:path*",
             "permanent": true
+        },
+        {
+            "source": "/index.html",
+            "destination": "/",
+            "permanent": true
         }
     ],
     "headers": [
