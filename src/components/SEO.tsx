@@ -31,6 +31,7 @@ const SEO = ({ title, description, url, image, type = 'website', children }: SEO
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
             <meta property="og:url" content={fullUrl} />
+            <meta property="og:site_name" content="Mobintix Infotech" />
             <meta property="og:image" content={fullImage} />
 
             {/* Twitter */}
