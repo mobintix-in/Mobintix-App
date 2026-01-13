@@ -103,7 +103,34 @@ const Services = () => {
         title="Our Services | Web & App Development – Mobintix Infotech"
         description="Explore our services including web development, mobile app development, UI/UX design, backend APIs, and automation solutions."
         url="/services"
-      />
+      >
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": services.map((service) => ({
+              "@type": "Service",
+              "name": service.title,
+              "description": service.description,
+              "provider": {
+                "@type": "LocalBusiness",
+                "name": "Mobintix Infotech"
+              },
+              "areaServed": "Worldwide",
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": `${service.title} Services`,
+                "itemListElement": service.features.map((feature) => ({
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": feature
+                  }
+                }))
+              }
+            }))
+          })}
+        </script>
+      </SEO>
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black text-white">
         <div className="container mx-auto px-4 md:px-8">
           <div
