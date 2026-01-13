@@ -145,8 +145,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; {currentYear} Mobintix Infotech. All rights reserved.</p>
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+          <p className="text-gray-400">&copy; {currentYear} Mobintix Infotech. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors duration-300">
+              Privacy Policy
+            </Link>
+            <Link to="/terms-of-service" className="text-gray-400 hover:text-white transition-colors duration-300">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
