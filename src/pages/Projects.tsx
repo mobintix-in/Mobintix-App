@@ -169,7 +169,7 @@ const Projects = () => {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center space-x-2 bg-black text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-800 transition-all duration-300 group"
+            className="inline-flex items-center space-x-2 bg-black text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-800 transition-all duration-300 group rounded-xl shadow-lg hover:shadow-xl"
           >
             <span>Start Your Project</span>
             <ExternalLink className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />

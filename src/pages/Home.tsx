@@ -51,8 +51,9 @@ const Home = () => {
 
   const stats = [
     { number: '150+', label: 'Projects Completed' },
-    { number: '50+', label: 'Happy Clients' },
-    { number: '10+', label: 'Years Experience' },
+    { number: '50+', label: 'Clients in India' },
+    { number: '30+', label: 'Worldwide Clients' },
+    { number: '2+', label: 'Years Experience' },
     { number: '25+', label: 'Team Members' },
   ];
 
@@ -88,7 +89,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/projects"
-                className="group bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300 flex items-center justify-center space-x-2"
+                className="group bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
                 title="View Our Work"
               >
                 <span>View Our Work</span>
@@ -96,7 +97,7 @@ const Home = () => {
               </Link>
               <Link
                 to="/contact"
-                className="group border-2 border-white text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+                className="group border-2 border-white text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 rounded-xl"
                 title="Get In Touch"
               >
                 Get In Touch
@@ -114,7 +115,7 @@ const Home = () => {
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -221,7 +222,7 @@ const Home = () => {
               </div>
               <Link
                 to="/contact"
-                className="block w-full text-center bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors"
+                className="block w-full text-center bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl"
               >
                 Get Started
               </Link>
@@ -263,7 +264,7 @@ const Home = () => {
               </div>
               <Link
                 to="/contact"
-                className="block w-full text-center bg-white text-black py-4 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
+                className="block w-full text-center bg-white text-black py-4 rounded-xl font-semibold hover:bg-gray-200 transition-colors shadow-lg hover:shadow-xl"
               >
                 Choose Business Plan
               </Link>
@@ -302,7 +303,7 @@ const Home = () => {
               </div>
               <Link
                 to="/contact"
-                className="block w-full text-center bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors"
+                className="block w-full text-center bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl"
               >
                 Contact Sales
               </Link>
@@ -391,7 +392,7 @@ const Home = () => {
           </p>
           <Link
             to="/contact"
-            className="inline-block bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300 rounded-full"
+            className="inline-block bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
             title="Contact Us Today"
           >
             Contact us today for a free consultation

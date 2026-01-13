@@ -295,7 +295,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-black text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-black text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 rounded-xl shadow-lg hover:shadow-xl"
                 >
                   {isSubmitting ? (
                     <span>Sending...</span>
@@ -341,7 +341,7 @@ const Contact = () => {
             href="https://maps.app.goo.gl/6kx8gkDQSUka9UxY6"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-6 px-6 py-3 bg-black text-white hover:bg-gray-800 transition"
+            className="inline-block mt-6 px-6 py-3 bg-black text-white hover:bg-gray-800 transition rounded-xl shadow-lg hover:shadow-xl"
           >
             Open in Google Maps
           </a>
