@@ -47,6 +47,50 @@ const SEO = ({
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="theme-color" content="#000000" />
 
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": "Mobintix Infotech",
+                    "url": siteUrl,
+                    "logo": `${siteUrl}/Mobintix.png`,
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "telephone": "+91-94093-83803",
+                        "contactType": "customer service",
+                        "areaServed": ["IN", "US", "GB", "AU", "CA"],
+                        "availableLanguage": ["en", "hi", "gu"]
+                    },
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "95, Krishna Residency",
+                        "addressLocality": "Surat",
+                        "addressRegion": "Gujarat",
+                        "postalCode": "394190",
+                        "addressCountry": "IN"
+                    },
+                    "sameAs": [
+                        "https://www.linkedin.com/company/mobintix/",
+                        "https://github.com/mobintix-in",
+                        "https://www.instagram.com/mobintix.infotech/",
+                        "https://www.facebook.com/mobintix/"
+                    ]
+                })}
+            </script>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": "Mobintix Infotech",
+                    "url": siteUrl,
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": `${siteUrl}/search?q={search_term_string}`,
+                        "query-input": "required name=search_term_string"
+                    }
+                })}
+            </script>
+
             {children}
         </Helmet>
     );
