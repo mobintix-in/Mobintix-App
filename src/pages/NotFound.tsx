@@ -43,14 +43,14 @@ const NotFound = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             to="/"
-            className="group inline-flex items-center justify-center space-x-2 bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300"
+            className="group inline-flex items-center justify-center space-x-2 bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
           >
             <Home size={20} />
             <span>Go Home</span>
           </Link>
           <button
             onClick={() => window.history.back()}
-            className="group inline-flex items-center justify-center space-x-2 border-2 border-white text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+            className="group inline-flex items-center justify-center space-x-2 border-2 border-white text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
           >
             <ArrowLeft size={20} />
             <span>Go Back</span>
