@@ -10,52 +10,7 @@ const Home = () => {
     setIsVisible(true);
   }, []);
 
-  const features = [
-    {
-      icon: <Code size={40} />,
-      title: 'Web Development',
-      description: 'Cutting-edge web solutions built with modern technologies',
-      link: '/web-development',
-    },
-    {
-      icon: <Smartphone size={40} />,
-      title: 'Mobile Apps',
-      description: 'Native and cross-platform mobile applications',
-      link: '/mobile-apps',
-    },
-    {
-      icon: <Palette size={40} />,
-      title: 'UI/UX Design',
-      description: 'Beautiful, intuitive interfaces that users love',
-      link: '/ui-ux-design',
-    },
-    {
-      icon: <Cloud size={40} />,
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and deployment',
-      link: '/cloud-solutions',
-    },
-    {
-      icon: <TrendingUp size={40} />,
-      title: 'Digital Strategy',
-      description: 'Strategic planning for digital transformation',
-      link: '/digital-strategy',
-    },
-    {
-      icon: <Shield size={40} />,
-      title: 'Security',
-      description: 'Enterprise-grade security and data protection',
-      link: '/security',
-    },
-  ];
 
-  const stats = [
-    { number: '150+', label: 'Projects Completed' },
-    { number: '50+', label: 'Clients in India' },
-    { number: '30+', label: 'Worldwide Clients' },
-    { number: '2+', label: 'Years Experience' },
-    { number: '25+', label: 'Team Members' },
-  ];
 
   return (
     <div className="bg-white">
@@ -65,7 +20,7 @@ const Home = () => {
         keywords="web development company, mobile app development, Flutter developers, React agency, Mobintix Infotech"
         url="/"
       />
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden pt-20">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%), linear-gradient(-45deg, #000 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #000 75%), linear-gradient(-45deg, transparent 75%, #000 75%)',
@@ -79,57 +34,54 @@ const Home = () => {
             className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
-              MOBINTIX INFOTECH<span className="text-gray-400">.</span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight">
+              Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">High-Performance</span><br />
+              Digital Products
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-3xl mx-auto leading-relaxed">
-              Transforming Ideas Into Digital Excellence
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+              We engineer scalable web & mobile applications for growing businesses worldwide. Custom software. Clean code. Measurable results.
             </p>
-            <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-              We craft innovative technology solutions that drive business growth and deliver exceptional user experiences
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
-                to="/projects"
-                className="group bg-white text-black px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
-                title="View Our Work"
+                to="/contact"
+                className="group bg-white text-black px-8 py-4 font-bold uppercase tracking-wider hover:bg-gray-100 transition-all duration-300 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] flex items-center justify-center space-x-2"
+                title="Start Your Project"
               >
-                <span>View Our Work</span>
+                <span>Start Your Project</span>
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
               </Link>
               <Link
-                to="/contact"
-                className="group border-2 border-white text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 rounded-xl"
-                title="Get In Touch"
+                to="/services"
+                className="group border border-gray-600 bg-gray-900/50 backdrop-blur-sm text-white px-8 py-4 font-semibold uppercase tracking-wider hover:bg-gray-800 hover:border-gray-500 transition-all duration-300 rounded-xl"
+                title="View Our Services"
               >
-                Get In Touch
+                View Services
               </Link>
+            </div>
+
+            {/* Trust Strip */}
+            <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-sm md:text-base text-gray-400 font-medium">
+              <div className="flex items-center space-x-2">
+                <span className="flex text-yellow-400">
+                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
+                </span>
+                <span>5.0 Rated Agency</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Globe size={18} className="text-blue-400" />
+                <span>Serving Clients in 3+ Countries</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Check size={18} className="text-green-400" />
+                <span>30+ Projects Delivered</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-50">
           <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center transform hover:scale-105 transition-transform duration-300"
-                style={{
-                  animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
-                }}
-              >
-                <h3 className="text-4xl md:text-5xl font-bold text-black mb-2">{stat.number}</h3>
-                <p className="text-gray-600 uppercase text-sm tracking-wider">{stat.label}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -144,7 +96,44 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
+            {[
+              {
+                icon: <Code size={40} />,
+                title: 'Web Development',
+                description: 'High-performance websites that convert visitors into customers.',
+                link: '/services/web-development', // Ideally specific page
+              },
+              {
+                icon: <Smartphone size={40} />,
+                title: 'Mobile Apps',
+                description: 'Native and cross-platform apps for iOS and Android that users love.',
+                link: '/services/mobile-apps',
+              },
+              {
+                icon: <Palette size={40} />,
+                title: 'UI/UX Design',
+                description: 'Intuitive, beautiful designs that improve engagement and retention.',
+                link: '/services/ui-ux-design',
+              },
+              {
+                icon: <Cloud size={40} />,
+                title: 'Cloud Solutions',
+                description: 'Scalable infrastructure on AWS/Azure to handle growth effortlessly.',
+                link: '/services/cloud-solutions',
+              },
+              {
+                icon: <TrendingUp size={40} />,
+                title: 'Digital Strategy',
+                description: 'Data-driven roadmaps to accelerate your digital transformation.',
+                link: '/services/digital-marketing',
+              },
+              {
+                icon: <Shield size={40} />,
+                title: 'Security',
+                description: 'Enterprise-grade protection to safeguard your business data.',
+                link: '/services/security',
+              },
+            ].map((feature, index) => {
               const bgColors = [
                 'bg-blue-50',
                 'bg-purple-50',
@@ -159,22 +148,25 @@ const Home = () => {
                 <Link
                   key={index}
                   to={feature.link}
-                  className="group bg-white p-8 rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden block"
+                  className="group bg-white p-8 rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden block flex flex-col h-full"
                   style={{
                     animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                   }}
                 >
                   <div className={`absolute top-0 right-0 w-32 h-32 ${colorClass} rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-500`}></div>
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex-grow">
                     <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:rotate-6 transition-transform duration-300">
                       {feature.icon}
                     </div>
                     <h3 className="text-xl font-bold text-black mb-3">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                       {feature.description}
                     </p>
+                  </div>
+                  <div className="relative z-10 text-blue-600 font-semibold group-hover:translate-x-2 transition-transform duration-300 inline-flex items-center text-sm uppercase tracking-wide">
+                    Learn More <ArrowRight size={16} className="ml-2" />
                   </div>
                 </Link>
               );
@@ -308,6 +300,26 @@ const Home = () => {
                 className="block w-full text-center bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl"
               >
                 Contact Sales
+              </Link>
+            </div>
+          </div>
+
+          {/* Mid-Page Conversion Anchor */}
+          <div className="mt-20 glass bg-gradient-to-r from-blue-900 to-purple-900 rounded-3xl p-12 text-center relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 left-0 w-full h-full opacity-10" style={{
+              backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+              backgroundSize: '30px 30px'
+            }}></div>
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">Not sure which plan fits your idea?</h3>
+              <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+                Get a free 30-minute consultation with our technical experts. We'll help you roadmap your project, no strings attached.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-block bg-white text-blue-900 px-8 py-4 font-bold uppercase tracking-wider hover:bg-blue-50 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1"
+              >
+                Talk to an Expert
               </Link>
             </div>
           </div>

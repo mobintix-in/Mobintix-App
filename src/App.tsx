@@ -15,6 +15,19 @@ const Admin = lazy(() => import('./pages/Admin'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const WebDevelopment = lazy(() => import('./pages/services/WebDevelopment'));
+const MobileAppDevelopment = lazy(() => import('./pages/services/MobileAppDevelopment'));
+const UiUxDesign = lazy(() => import('./pages/services/UiUxDesign'));
+const CloudSolutions = lazy(() => import('./pages/services/CloudSolutions'));
+const Ecommerce = lazy(() => import('./pages/services/Ecommerce'));
+const EnterpriseSolutions = lazy(() => import('./pages/services/EnterpriseSolutions'));
+const DatabaseDesign = lazy(() => import('./pages/services/DatabaseDesign'));
+const Security = lazy(() => import('./pages/services/Security'));
+const DigitalMarketing = lazy(() => import('./pages/services/DigitalMarketing'));
+const AiMachineLearning = lazy(() => import('./pages/services/AiMachineLearning'));
+const MaintenanceSupport = lazy(() => import('./pages/services/MaintenanceSupport'));
+const BusinessIntelligence = lazy(() => import('./pages/services/BusinessIntelligence'));
+const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'));
 
 // Loading component
 const PageLoader = () => (
@@ -49,12 +62,20 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/web-development" element={<Services />} />
-              <Route path="/mobile-apps" element={<Services />} />
-              <Route path="/ui-ux-design" element={<Services />} />
-              <Route path="/cloud-solutions" element={<Services />} />
-              <Route path="/digital-strategy" element={<Services />} />
-              <Route path="/security" element={<Services />} />
+              <Route path="/services/web-development" element={<WebDevelopment />} />
+              <Route path="/services/mobile-apps" element={<MobileAppDevelopment />} />
+              <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
+              <Route path="/services/cloud-solutions" element={<CloudSolutions />} />
+              <Route path="/services/ecommerce" element={<Ecommerce />} />
+              <Route path="/services/enterprise-solutions" element={<EnterpriseSolutions />} />
+              <Route path="/services/database-design" element={<DatabaseDesign />} />
+              <Route path="/services/security" element={<Security />} />
+              <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+              <Route path="/services/digital-strategy" element={<DigitalMarketing />} />
+              <Route path="/services/ai-ml" element={<AiMachineLearning />} />
+              <Route path="/services/maintenance-support" element={<MaintenanceSupport />} />
+              <Route path="/services/business-intelligence" element={<BusinessIntelligence />} />
+
               <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -62,6 +83,7 @@ function App() {
               <Route path="/aryan" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <WhatsAppButton />
           </Suspense>
         </Layout>
       </Router>

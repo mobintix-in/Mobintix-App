@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
   Code,
@@ -12,6 +13,7 @@ import {
   Layers,
   Settings,
   BarChart,
+  ArrowRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -28,74 +30,100 @@ const Services = () => {
       title: 'Web Development',
       description: 'Custom web applications built with React, Vue, Angular, and modern frameworks.',
       features: ['Responsive Design', 'SEO Optimization', 'Progressive Web Apps', 'API Integration'],
+      href: '/services/web-development',
+      price: 'Starting from $999'
     },
     {
       icon: <Smartphone size={28} />,
       title: 'Mobile App Development',
       description: 'Native and cross-platform mobile solutions for iOS and Android.',
       features: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Deployment'],
+      href: '/services/mobile-apps',
+      price: 'Starting from $1,499'
     },
     {
       icon: <Palette size={28} />,
       title: 'UI/UX Design',
       description: 'Beautiful, intuitive interfaces that enhance user engagement and satisfaction.',
       features: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems'],
+      href: '/services/ui-ux-design',
+      price: 'Starting from $499'
     },
     {
       icon: <Cloud size={28} />,
       title: 'Cloud Solutions',
       description: 'Scalable cloud infrastructure and deployment on AWS, Azure, and Google Cloud.',
       features: ['Cloud Migration', 'DevOps', 'Serverless', 'Auto Scaling'],
+      href: '/services/cloud-solutions',
+      price: 'Starting from $1,299'
     },
     {
       icon: <ShoppingCart size={28} />,
       title: 'E-Commerce Solutions',
       description: 'Complete e-commerce platforms with payment integration and inventory management.',
       features: ['Shopping Cart', 'Payment Gateway', 'Order Management', 'Analytics'],
+      href: '/services/ecommerce',
+      price: 'Starting from $1,999'
     },
     {
       icon: <Database size={28} />,
       title: 'Database Design',
       description: 'Robust database architecture and optimization for high-performance applications.',
       features: ['SQL/NoSQL', 'Data Modeling', 'Performance Tuning', 'Data Migration'],
+      href: '/services/database-design',
+      price: 'Starting from $799'
     },
     {
       icon: <Lock size={28} />,
       title: 'Security & Compliance',
       description: 'Enterprise-grade security solutions to protect your digital assets.',
       features: ['Security Audits', 'Penetration Testing', 'GDPR Compliance', 'Encryption'],
+      href: '/services/security',
+      price: 'Starting from $1,499'
     },
     {
       icon: <Cpu size={28} />,
       title: 'AI & Machine Learning',
       description: 'Intelligent solutions powered by artificial intelligence and machine learning.',
       features: ['Predictive Analytics', 'Natural Language Processing', 'Computer Vision', 'Chatbots'],
+      href: '/services/ai-ml',
+      price: 'Custom Pricing'
     },
     {
       icon: <Globe size={28} />,
       title: 'Digital Marketing',
       description: 'Comprehensive digital marketing strategies to grow your online presence.',
       features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Email Campaigns'],
+      href: '/services/digital-marketing',
+      price: 'Starting from $499/mo'
     },
     {
       icon: <Layers size={28} />,
       title: 'Enterprise Solutions',
       description: 'Custom enterprise software tailored to your business processes and needs.',
       features: ['ERP Systems', 'CRM Solutions', 'Workflow Automation', 'Integration'],
+      href: '/services/enterprise-solutions',
+      price: 'Custom Pricing'
     },
     {
       icon: <Settings size={28} />,
       title: 'Maintenance & Support',
       description: '24/7 technical support and maintenance to keep your systems running smoothly.',
       features: ['Bug Fixes', 'Performance Monitoring', 'Updates', 'Technical Support'],
+      href: '/services/maintenance-support',
+      price: 'Starting from $299/mo'
     },
     {
       icon: <BarChart size={28} />,
       title: 'Business Intelligence',
       description: 'Data-driven insights and analytics to inform your business decisions.',
       features: ['Data Visualization', 'Reporting', 'Predictive Analytics', 'KPI Dashboards'],
+      href: '/services/business-intelligence',
+      price: 'Custom Pricing'
     },
   ];
+
+
 
   return (
     <div className="bg-white">
@@ -114,6 +142,11 @@ const Services = () => {
               "provider": {
                 "@type": "LocalBusiness",
                 "name": "Mobintix Infotech"
+              },
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": service.price.replace(/[^0-9.]/g, '') || "0"
               },
               "areaServed": "Worldwide",
               "hasOfferCatalog": {
@@ -160,29 +193,36 @@ const Services = () => {
               const colorClass = bgColors[index % bgColors.length];
 
               return (
-                <div
+                <Link
+                  to={service.href || '/contact'}
                   key={index}
-                  className="group bg-white p-8 rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden"
+                  className="group bg-white p-8 rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden flex flex-col h-full"
                   style={{
                     animation: `fadeInUp 0.6s ease-out ${index * 0.05}s both`,
                   }}
                 >
                   <div className={`absolute top-0 right-0 w-32 h-32 ${colorClass} rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-500`}></div>
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex-grow">
                     <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:rotate-6 transition-transform duration-300">
-                      {/* Clone element to override size prop if needed, though Lucide icons ideally adapt */}
-                      {/* Since we can't easily cloneElement with new props in this specific text structure without changing data, 
-                          we will rely on the SVG scaling or just accept the predefined size which might need adjustment in the data array if 48 is too big.
-                          Actually, let's update the data array in a separate chunk to size 28 to match the design perfectly. */}
                       {service.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-black mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 mb-6 leading-relaxed text-sm">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">
+                        {service.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-gray-600 mb-4 leading-relaxed text-sm">
                       {service.description}
                     </p>
-                    <ul className="space-y-2">
+
+                    <div className="mb-6">
+                      <span className="inline-block bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full font-semibold">
+                        {service.price}
+                      </span>
+                    </div>
+
+                    <ul className="space-y-2 mb-6">
                       {service.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center space-x-2 text-sm text-gray-500">
                           <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
@@ -191,7 +231,12 @@ const Services = () => {
                       ))}
                     </ul>
                   </div>
-                </div>
+                  <div className="relative z-10 mt-auto pt-4 border-t border-gray-100/50">
+                    <span className="inline-flex items-center text-blue-600 font-bold uppercase tracking-wider text-sm group-hover:underline">
+                      Learn More <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </Link>
               );
             })}
           </div>
