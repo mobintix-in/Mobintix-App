@@ -50,10 +50,14 @@ const SEO = ({
             <script type="application/ld+json">
                 {JSON.stringify({
                     "@context": "https://schema.org",
-                    "@type": "Organization",
+                    "@type": "LocalBusiness",
+                    "additionalType": "https://schema.org/ITService",
                     "name": "Mobintix Infotech",
+                    "image": `${siteUrl}/Mobintix.png`,
                     "url": siteUrl,
                     "logo": `${siteUrl}/Mobintix.png`,
+                    "priceRange": "$500-5000",
+                    "telephone": "+91-94093-83803",
                     "contactPoint": {
                         "@type": "ContactPoint",
                         "telephone": "+91-94093-83803",
@@ -68,6 +72,13 @@ const SEO = ({
                         "addressRegion": "Gujarat",
                         "postalCode": "394190",
                         "addressCountry": "IN"
+                    },
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": "5.0",
+                        "reviewCount": "19",
+                        "bestRating": "5",
+                        "worstRating": "1"
                     },
                     "sameAs": [
                         "https://www.linkedin.com/company/mobintix/",
@@ -88,6 +99,26 @@ const SEO = ({
                         "target": `${siteUrl}/search?q={search_term_string}`,
                         "query-input": "required name=search_term_string"
                     }
+                })}
+            </script>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": siteUrl
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": title.split('|')[0].trim(),
+                            "item": fullUrl
+                        }
+                    ]
                 })}
             </script>
 
