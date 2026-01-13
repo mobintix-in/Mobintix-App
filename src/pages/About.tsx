@@ -244,11 +244,19 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            className="flex overflow-x-auto gap-6 pb-10 -mx-4 px-4 md:mx-0 md:px-0 md:gap-8 snap-x snap-mandatory"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <style>{`
+              .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
             {reviews.map((review, index) => (
               <div
                 key={index}
-                className="group relative bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+                className="hide-scrollbar flex-shrink-0 w-[85vw] md:w-[400px] snap-center group relative bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 flex flex-col"
               >
                 <div className="absolute top-8 right-8 text-6xl text-gray-100 font-serif leading-none select-none">"</div>
 
