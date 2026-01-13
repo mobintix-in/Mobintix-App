@@ -61,6 +61,20 @@ const About = () => {
       review:
         'Highly recommend Mobintix Infotech for web and app development. They understood our requirements perfectly.',
     },
+    {
+      name: 'Emma L.',
+      country: 'United Kingdom',
+      rating: 5,
+      review:
+        'Professional, reliable, and skilled. They transformed our vision into a seamless digital experience.',
+    },
+    {
+      name: 'Michael B.',
+      country: 'Germany',
+      rating: 5,
+      review:
+        'Impressive technical expertise and project management. The final product exceeded our expectations.',
+    },
   ];
 
   return (
