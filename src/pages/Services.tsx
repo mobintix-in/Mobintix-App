@@ -100,8 +100,8 @@ const Services = () => {
   return (
     <div className="bg-white">
       <SEO
-        title="Our Services"
-        description="Explore our comprehensive technology solutions including Web Development, Mobile Apps, UI/UX Design, Cloud Solutions, AI, and Digital Marketing."
+        title="Our Services | Web & App Development – Mobintix Infotech"
+        description="Explore our services including web development, mobile app development, UI/UX design, backend APIs, and automation solutions."
         url="/services"
       />
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black text-white">

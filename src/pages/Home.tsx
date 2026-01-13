@@ -60,8 +60,10 @@ const Home = () => {
   return (
     <div className="bg-white">
       <SEO
-        title="Innovative Technology Solutions"
-        description="Transforming ideas into digital excellence with cutting-edge technology solutions. Web Development, Mobile Apps, Cloud Solutions, and more."
+        title="Mobintix Infotech | Web & Mobile App Development Company"
+        description="We build scalable web and mobile applications using React, Flutter, and modern technologies. Trusted by global clients."
+        keywords="web development company, mobile app development, Flutter developers, React agency, Mobintix Infotech"
+        url="/"
       />
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
         <div className="absolute inset-0 opacity-10">

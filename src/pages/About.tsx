@@ -80,8 +80,9 @@ const About = () => {
   return (
     <div className="bg-white">
       <SEO
-        title="About Mobintix Infotech | Web & Mobile App Development Company"
-        description="Mobintix Infotech is an India-based web and mobile app development company delivering scalable digital solutions for startups and businesses worldwide."
+        title="About Mobintix Infotech | Trusted IT Company in India"
+        description="Learn about Mobintix Infotech, an India-based IT services company delivering scalable web and mobile app solutions globally."
+        keywords="about Mobintix Infotech, IT company India, app development company"
         url="/about"
       />
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black text-white">

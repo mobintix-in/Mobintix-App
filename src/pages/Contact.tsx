@@ -107,8 +107,8 @@ const Contact = () => {
   return (
     <div className="bg-white">
       <SEO
-        title="Contact Us"
-        description="Get in touch with Mobintix Infotech. We are ready to discuss your next project and help you achieve your digital goals."
+        title="Contact Mobintix Infotech | Get a Free Consultation"
+        description="Contact Mobintix Infotech to discuss your web or mobile app development project. Free consultation available."
         url="/contact"
       />
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black text-white">
