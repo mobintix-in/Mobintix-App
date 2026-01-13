@@ -81,7 +81,7 @@ const Projects = () => {
               <button
                 key={category}
                 onClick={() => setFilter(category)}
-                className={`px-6 py-2 font-semibold uppercase tracking-wider transition-all duration-300 ${filter === category
+                className={`px-6 py-2 font-semibold uppercase tracking-wider transition-all duration-300 rounded-full ${filter === category
                   ? 'bg-black text-white'
                   : 'bg-gray-200 text-black hover:bg-gray-300'
                   }`}
@@ -103,7 +103,7 @@ const Projects = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden bg-black cursor-pointer block"
+                  className="group relative overflow-hidden bg-black cursor-pointer block rounded-3xl"
                   style={{
                     animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                   }}
@@ -120,7 +120,7 @@ const Projects = () => {
                       {project.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className="text-xs bg-white/20 text-white px-3 py-1 backdrop-blur-sm"
+                          className="text-xs bg-white/20 text-white px-3 py-1 backdrop-blur-sm rounded-full"
                         >
                           {tag}
                         </span>

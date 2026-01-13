@@ -86,7 +86,7 @@ const About = () => {
               {team.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-black text-white p-8 text-center hover:bg-gray-900 transition-colors duration-300"
+                  className="bg-black text-white p-8 text-center hover:bg-gray-900 transition-colors duration-300 rounded-2xl"
                 >
                   <h3 className="text-4xl font-bold mb-2">{item.count}</h3>
                   <p className="text-gray-400 uppercase text-sm tracking-wider">{item.role}</p>
@@ -102,7 +102,7 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="flex items-start space-x-4 group">
-                <div className="bg-black text-white p-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-black text-white p-4 group-hover:scale-110 transition-transform duration-300 rounded-2xl">
                   <Target size={32} />
                 </div>
                 <div>
@@ -114,7 +114,7 @@ const About = () => {
               </div>
 
               <div className="flex items-start space-x-4 group">
-                <div className="bg-black text-white p-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-black text-white p-4 group-hover:scale-110 transition-transform duration-300 rounded-2xl">
                   <Eye size={32} />
                 </div>
                 <div>
@@ -126,7 +126,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="bg-black p-12 text-white">
+            <div className="bg-black p-12 text-white rounded-3xl">
               <h3 className="text-3xl font-bold mb-8">Why Choose Us?</h3>
               <ul className="space-y-4">
                 {[
@@ -166,7 +166,7 @@ const About = () => {
                   animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                 }}
               >
-                <div className="inline-block bg-black text-white p-6 mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="inline-block bg-black text-white p-6 mb-4 group-hover:scale-110 transition-transform duration-300 rounded-2xl">
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-bold text-black mb-3">{value.title}</h3>

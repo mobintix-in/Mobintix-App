@@ -137,7 +137,7 @@ const Contact = () => {
               <a
                 key={index}
                 href={info.link}
-                className="group bg-gray-50 p-6 hover:bg-black transition-all duration-500 text-center"
+                className="group bg-gray-50 p-6 hover:bg-black transition-all duration-500 text-center rounded-3xl"
                 style={{
                   animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                 }}
@@ -169,7 +169,7 @@ const Contact = () => {
                 project needs.
               </p>
 
-              <div className="bg-black text-white p-8">
+              <div className="bg-black text-white p-8 rounded-3xl">
                 <h3 className="text-2xl font-bold mb-4">Why Work With Us?</h3>
                 <ul className="space-y-3">
                   {[
@@ -189,7 +189,7 @@ const Contact = () => {
             </div>
 
             <div
-              className="bg-gray-50 p-8"
+              className="bg-gray-50 p-8 rounded-3xl"
               style={{ animation: "fadeInRight 0.8s ease-out both" }}
             >
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -207,7 +207,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors rounded-xl"
                     placeholder="John Doe"
                   />
                 </div>
@@ -226,7 +226,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors rounded-xl"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -244,7 +244,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors rounded-xl"
                     placeholder="+1 (555) 123-4567"
                   />
                 </div>
@@ -262,7 +262,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors rounded-xl"
                   >
                     <option value="">Select a subject</option>
                     <option value="general">General Inquiry</option>
@@ -287,7 +287,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-black focus:outline-none transition-colors resize-none rounded-xl"
                     placeholder="Tell us about your project..."
                   ></textarea>
                 </div>

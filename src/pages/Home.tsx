@@ -184,7 +184,7 @@ const Home = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">🚀 Our Service Packages</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Our Service Packages</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               We offer flexible, scalable solutions tailored to startups, businesses, and enterprises worldwide.
             </p>
