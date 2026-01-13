@@ -215,8 +215,6 @@ const About = () => {
         </div>
       </section>
 
-
-
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
