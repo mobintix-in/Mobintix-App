@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 
 import { supabase } from "../lib/supabase";
 import SEO from '../components/SEO';
+import { trackEvent } from '../lib/analytics';
 
 
 const Contact = () => {
@@ -59,6 +60,7 @@ const Contact = () => {
       setSubmitMessage(
         "Thank you for your message! We will get back to you soon."
       );
+      trackEvent('submit', 'Contact Form', 'Lead Generated');
       setFormData({
         name: "",
         email: "",

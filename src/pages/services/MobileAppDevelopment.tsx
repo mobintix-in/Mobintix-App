@@ -53,9 +53,9 @@ const MobileAppDevelopment = () => {
     return (
         <div className="bg-white min-h-screen">
             <SEO
-                title="Mobile App Development | Flutter & React Native Experts - Mobintix"
-                description="Mobintix builds high-performance mobile apps for iOS and Android using Flutter and React Native. Turn your idea into a feature-rich mobile application."
-                keywords="mobile app development, flutter development company, react native developers, ios app development, android app development, cross-platform apps"
+                title="Mobile App Development India | Flutter & React Native Experts - Mobintix"
+                description="Mobintix is a leading mobile app development company in India. We build high-performance iOS and Android apps using Flutter and React Native."
+                keywords="mobile app development india, flutter development company india, react native developers india, ios app development, android app development"
                 url="/services/mobile-apps"
             >
                 <script type="application/ld+json">

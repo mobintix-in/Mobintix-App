@@ -24,6 +24,63 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
+  const fallbackProjects: Project[] = [
+    {
+      id: 1,
+      title: 'E-Commerce Platform',
+      category: 'E-Commerce',
+      description: 'A full-featured online store with payment integration, inventory management, and admin dashboard.',
+      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1470',
+      tags: ['Next.js', 'Stripe', 'Tailwind CSS'],
+      link: '#'
+    },
+    {
+      id: 2,
+      title: 'Healthcare App',
+      category: 'Mobile',
+      description: 'Patient management system with appointment scheduling and telemedicine features.',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1470',
+      tags: ['Flutter', 'Firebase', 'WebRTC'],
+      link: '#'
+    },
+    {
+      id: 3,
+      title: 'Real Estate Portal',
+      category: 'Web',
+      description: 'Property listing platform with advanced search, virtual tours, and agent portal.',
+      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1373',
+      tags: ['React', 'Node.js', 'MongoDB'],
+      link: '#'
+    },
+    {
+      id: 4,
+      title: 'FinTech Dashboard',
+      category: 'Design',
+      description: 'Modern financial analytics dashboard with real-time data visualization.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1470',
+      tags: ['UI/UX', 'Figma', 'React'],
+      link: '#'
+    },
+    {
+      id: 5,
+      title: 'Social Media App',
+      category: 'Mobile',
+      description: 'Community platform connecting users with similar interests.',
+      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1374',
+      tags: ['React Native', 'GraphQL', 'AWS'],
+      link: '#'
+    },
+    {
+      id: 6,
+      title: 'Corporate Website',
+      category: 'Web',
+      description: 'Professional corporate identity website for a multinational firm.',
+      image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1470',
+      tags: ['Gatsby', 'Sanity', 'Animation'],
+      link: '#'
+    }
+  ];
+
   const fetchProjects = async () => {
     try {
       setLoading(true);
@@ -33,14 +90,18 @@ const Projects = () => {
         .order('id', { ascending: true });
 
       if (error) {
-        throw error;
-      }
-
-      if (data) {
+        // If error (e.g. missing credentials), fall back to static data
+        console.warn('Supabase fetch failed, using fallback data:', error);
+        setProjects(fallbackProjects);
+      } else if (data && data.length > 0) {
         setProjects(data);
+      } else {
+        // If no data, use fallback
+        setProjects(fallbackProjects);
       }
     } catch (error) {
       console.error('Error fetching projects:', error);
+      setProjects(fallbackProjects);
     } finally {
       setLoading(false);
     }

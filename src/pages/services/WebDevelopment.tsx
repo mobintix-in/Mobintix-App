@@ -53,9 +53,9 @@ const WebDevelopment = () => {
     return (
         <div className="bg-white min-h-screen">
             <SEO
-                title="Web Development Company | Custom React & Next.js Solutions - Mobintix"
-                description="Mobintix Infotech offers top-tier web development services. We build scalable, high-performance websites and web apps using React, Next.js, and Node.js."
-                keywords="web development company, custom web apps, React developers, Next.js agency, frontend development, backend development"
+                title="Web Development Company India | Custom React & Next.js Solutions - Mobintix"
+                description="Mobintix Infotech is a top web development company in India. We build scalable, high-performance websites and web apps using React, Next.js, and Node.js."
+                keywords="web development company india, custom web apps, React developers india, Next.js agency, frontend development, backend development"
                 url="/services/web-development"
             >
                 <script type="application/ld+json">
