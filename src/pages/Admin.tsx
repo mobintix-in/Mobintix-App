@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import {
     Trash2, Edit, Plus, X, LogOut, MessageSquare, Briefcase,
-    LayoutDashboard, Search, ChevronRight, User, Settings, Menu, Download,
-    TrendingUp, ExternalLink, Image as ImageIcon, Calendar, Layers
+    LayoutDashboard, Search, User, Settings, Menu, Download,
+    TrendingUp, ExternalLink, Image as ImageIcon, Calendar
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import * as XLSX from 'xlsx';
@@ -351,7 +351,7 @@ const Admin = () => {
                         {[
                             { id: 'dashboard', icon: LayoutDashboard, label: 'Overview' },
                             { id: 'messages', icon: MessageSquare, label: 'Messages' },
-                            { id: 'projects', icon: Layers, label: 'Projects' },
+                            { id: 'projects', icon: Briefcase, label: 'Projects' },
                         ].map((item) => (
                             <button
                                 key={item.id}
