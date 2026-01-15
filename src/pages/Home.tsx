@@ -10,8 +10,6 @@ const Home = () => {
     setIsVisible(true);
   }, []);
 
-
-
   return (
     <div className="bg-white">
       <SEO
@@ -224,7 +222,7 @@ const Home = () => {
 
             {/* Business Plan */}
             <div className="bg-black text-white p-8 rounded-2xl border border-gray-800 shadow-2xl transform scale-105 z-10 flex flex-col">
-              <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+              <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-2xl rounded-tr-2xl">
                 MOST POPULAR
               </div>
               <div className="mb-8">
