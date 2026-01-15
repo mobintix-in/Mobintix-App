@@ -45,69 +45,77 @@ export const RegionProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const detectRegion = async () => {
+            let detectedCountry = 'US'; // Default
             try {
-                const response = await axios.get('https://ipapi.co/json/');
-                const data = response.data;
-                const detectedCountry = data.country_code;
-                setCountryCode(detectedCountry);
-
-                let newCurrency: Currency = 'USD';
-                let newLang = 'en';
-
-                if (detectedCountry === 'IN') {
-                    newCurrency = 'INR';
-                    newLang = 'en';
-                }
-                // 2. Eurozone (Common countries)
-                else if (['DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'PT', 'FI', 'GR', 'IE'].includes(detectedCountry)) {
-                    newCurrency = 'EUR';
-                    if (detectedCountry === 'DE' || detectedCountry === 'AT') newLang = 'de';
-                    else if (detectedCountry === 'ES') newLang = 'es';
-                    else if (detectedCountry === 'FR') newLang = 'fr';
-                    else newLang = 'en'; // Default to English for others or add more langs
-                }
-                // 3. UK
-                else if (detectedCountry === 'GB' || detectedCountry === 'UK') {
-                    newCurrency = 'GBP';
-                    newLang = 'en';
-                }
-                // 4. Canada
-                else if (detectedCountry === 'CA') {
-                    newCurrency = 'CAD';
-                    newLang = 'en';
-                }
-                // 5. Australia
-                else if (detectedCountry === 'AU') {
-                    newCurrency = 'AUD';
-                    newLang = 'en';
-                }
-                // 6. Russia
-                else if (detectedCountry === 'RU') {
-                    newCurrency = 'RUB';
-                    newLang = 'ru';
-                }
-                // 7. China
-                else if (detectedCountry === 'CN') {
-                    newCurrency = 'CNY';
-                    newLang = 'zh';
-                }
-                // 8. Latin America
-                else if (['MX', 'AR', 'CO', 'PE', 'CL'].includes(detectedCountry)) {
-                    newCurrency = 'USD';
-                    newLang = 'es';
-                }
-
-                setCurrency(newCurrency);
-                i18n.changeLanguage(newLang);
-
-                console.log(`Region: ${detectedCountry}, Currency: ${newCurrency}, Lang: ${newLang}`);
-
+                // Try Primary API
+                const response = await axios.get('https://ipapi.co/json/', { timeout: 5000 });
+                detectedCountry = response.data.country_code;
             } catch (error) {
-                setCurrency('USD');
-                i18n.changeLanguage('en');
-            } finally {
-                setIsLoading(false);
+                console.warn("Primary IP API failed, trying fallback...", error);
+                try {
+                    // Try Fallback API (ipwho.is)
+                    const response = await axios.get('https://ipwho.is/', { timeout: 5000 });
+                    if (response.data.success) {
+                        detectedCountry = response.data.country_code;
+                    }
+                } catch (fallbackError) {
+                    console.error("All IP APIs failed", fallbackError);
+                    // Remains 'US'
+                }
             }
+
+            setCountryCode(detectedCountry);
+
+            let newCurrency: Currency = 'USD';
+            let newLang = 'en';
+
+            if (detectedCountry === 'IN') {
+                newCurrency = 'INR';
+                newLang = 'en';
+            }
+            // 2. Eurozone (Common countries)
+            else if (['DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'PT', 'FI', 'GR', 'IE'].includes(detectedCountry)) {
+                newCurrency = 'EUR';
+                if (detectedCountry === 'DE' || detectedCountry === 'AT') newLang = 'de';
+                else if (detectedCountry === 'ES') newLang = 'es';
+                else if (detectedCountry === 'FR') newLang = 'fr';
+                else newLang = 'en';
+            }
+            // 3. UK
+            else if (detectedCountry === 'GB' || detectedCountry === 'UK') {
+                newCurrency = 'GBP';
+                newLang = 'en';
+            }
+            // 4. Canada
+            else if (detectedCountry === 'CA') {
+                newCurrency = 'CAD';
+                newLang = 'en';
+            }
+            // 5. Australia
+            else if (detectedCountry === 'AU') {
+                newCurrency = 'AUD';
+                newLang = 'en';
+            }
+            // 6. Russia
+            else if (detectedCountry === 'RU') {
+                newCurrency = 'RUB';
+                newLang = 'ru';
+            }
+            // 7. China
+            else if (detectedCountry === 'CN') {
+                newCurrency = 'CNY';
+                newLang = 'zh';
+            }
+            // 8. Latin America
+            else if (['MX', 'AR', 'CO', 'PE', 'CL'].includes(detectedCountry)) {
+                newCurrency = 'USD';
+                newLang = 'es';
+            }
+
+            setCurrency(newCurrency);
+            i18n.changeLanguage(newLang);
+            console.log(`Region: ${detectedCountry}, Currency: ${newCurrency}, Lang: ${newLang}`);
+            setIsLoading(false);
         };
 
         detectRegion();
