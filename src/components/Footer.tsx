@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Facebook, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -140,6 +140,16 @@ const Footer = () => {
                 title="Facebook"
               >
                 <Facebook size={20} />
+              </a>
+              <a
+                href="https://jsdl.in/DT-54ZRGQ9LES1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+                aria-label="Justdial"
+                title="Justdial"
+              >
+                <Star size={20} />
               </a>
             </div>
           </div>
