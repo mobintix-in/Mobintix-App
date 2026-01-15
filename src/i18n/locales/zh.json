@@ -1,0 +1,18 @@
+{
+    "hero": {
+        "title_start": "构建",
+        "title_highlight": "高性能",
+        "title_end": "数字产品",
+        "description": "我们为全球成长型企业设计可扩展的 Web 和移动应用程序。定制软件。简洁代码。可衡量的结果。",
+        "cta_primary": "开始您的项目",
+        "cta_secondary": "查看服务"
+    },
+    "pricing": {
+        "title": "我们的服务套餐",
+        "description": "我们为全球初创公司、企业和大型机构提供灵活、可扩展的解决方案。",
+        "starter": "入门计划",
+        "business": "商业计划",
+        "enterprise": "企业计划",
+        "starting_at": "起价"
+    }
+}

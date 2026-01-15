@@ -1,0 +1,18 @@
+{
+    "hero": {
+        "title_start": "Construisez",
+        "title_highlight": "Haute Performance",
+        "title_end": "Produits Numériques",
+        "description": "Nous concevons des applications web et mobiles évolutives pour les entreprises en croissance dans le monde entier.",
+        "cta_primary": "Démarrer le Projet",
+        "cta_secondary": "Nos Services"
+    },
+    "pricing": {
+        "title": "Nos Forfaits de Services",
+        "description": "Solutions flexibles et évolutives adaptées aux startups et entreprises.",
+        "starter": "Plan de Démarrage",
+        "business": "Plan Affaires",
+        "enterprise": "Plan Entreprise",
+        "starting_at": "À partir de"
+    }
+}

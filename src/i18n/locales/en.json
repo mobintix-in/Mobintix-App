@@ -1,0 +1,18 @@
+{
+    "hero": {
+        "title_start": "Build",
+        "title_highlight": "High-Performance",
+        "title_end": "Digital Products",
+        "description": "We engineer scalable web & mobile applications for growing businesses worldwide. Custom software. Clean code. Measurable results.",
+        "cta_primary": "Start Your Project",
+        "cta_secondary": "View Services"
+    },
+    "pricing": {
+        "title": "Our Service Packages",
+        "description": "We offer flexible, scalable solutions tailored to startups, businesses, and enterprises worldwide.",
+        "starter": "Starter Plan",
+        "business": "Business Plan",
+        "enterprise": "Enterprise Plan",
+        "starting_at": "Starting at"
+    }
+}

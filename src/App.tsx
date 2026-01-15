@@ -56,6 +56,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+import './i18n/config';
+import { RegionProvider } from './context/RegionContext';
+
 function App() {
   useEffect(() => {
     initGA();
@@ -63,39 +66,41 @@ function App() {
 
   return (
     <HelmetProvider>
-      <Router>
-        <ScrollToTop />
-        <Layout>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/web-development" element={<WebDevelopment />} />
-              <Route path="/services/mobile-apps" element={<MobileAppDevelopment />} />
-              <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
-              <Route path="/services/cloud-solutions" element={<CloudSolutions />} />
-              <Route path="/services/ecommerce" element={<Ecommerce />} />
-              <Route path="/services/enterprise-solutions" element={<EnterpriseSolutions />} />
-              <Route path="/services/database-design" element={<DatabaseDesign />} />
-              <Route path="/services/security" element={<Security />} />
-              <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
-              <Route path="/services/digital-strategy" element={<DigitalMarketing />} />
-              <Route path="/services/ai-ml" element={<AiMachineLearning />} />
-              <Route path="/services/maintenance-support" element={<MaintenanceSupport />} />
-              <Route path="/services/business-intelligence" element={<BusinessIntelligence />} />
+      <RegionProvider>
+        <Router>
+          <ScrollToTop />
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/services/web-development" element={<WebDevelopment />} />
+                <Route path="/services/mobile-apps" element={<MobileAppDevelopment />} />
+                <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
+                <Route path="/services/cloud-solutions" element={<CloudSolutions />} />
+                <Route path="/services/ecommerce" element={<Ecommerce />} />
+                <Route path="/services/enterprise-solutions" element={<EnterpriseSolutions />} />
+                <Route path="/services/database-design" element={<DatabaseDesign />} />
+                <Route path="/services/security" element={<Security />} />
+                <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+                <Route path="/services/digital-strategy" element={<DigitalMarketing />} />
+                <Route path="/services/ai-ml" element={<AiMachineLearning />} />
+                <Route path="/services/maintenance-support" element={<MaintenanceSupport />} />
+                <Route path="/services/business-intelligence" element={<BusinessIntelligence />} />
 
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route path="/aryan" element={<Admin />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <WhatsAppButton />
-          </Suspense>
-        </Layout>
-      </Router>
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/aryan" element={<Admin />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <WhatsAppButton />
+            </Suspense>
+          </Layout>
+        </Router>
+      </RegionProvider>
     </HelmetProvider>
   );
 }

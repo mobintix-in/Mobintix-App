@@ -1,0 +1,18 @@
+{
+    "hero": {
+        "title_start": "Construya",
+        "title_highlight": "Alto Rendimiento",
+        "title_end": "Productos Digitales",
+        "description": "Diseñamos aplicaciones web y móviles escalables para empresas en crecimiento en todo el mundo.",
+        "cta_primary": "Comienza Tu Proyecto",
+        "cta_secondary": "Ver Servicios"
+    },
+    "pricing": {
+        "title": "Nuestros Paquetes de Servicios",
+        "description": "Ofrecemos soluciones flexibles y escalables adaptadas a startups y empresas.",
+        "starter": "Plan Inicial",
+        "business": "Plan de Negocios",
+        "enterprise": "Plan Empresarial",
+        "starting_at": "Empezando desde"
+    }
+}

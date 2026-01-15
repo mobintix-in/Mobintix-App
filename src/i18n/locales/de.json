@@ -1,0 +1,18 @@
+{
+    "hero": {
+        "title_start": "Bauen Sie",
+        "title_highlight": "Hochleistungs",
+        "title_end": "Digitale Produkte",
+        "description": "Wir entwickeln skalierbare Web- und Mobilanwendungen für wachsende Unternehmen weltweit. Maßgeschneiderte Software. Sauberer Code. Messbare Ergebnisse.",
+        "cta_primary": "Projekt Starten",
+        "cta_secondary": "Dienstleistungen"
+    },
+    "pricing": {
+        "title": "Unsere Leistungspakete",
+        "description": "Wir bieten flexible, skalierbare Lösungen für Start-ups, Unternehmen und Großkonzerne weltweit.",
+        "starter": "Starter-Plan",
+        "business": "Business-Plan",
+        "enterprise": "Enterprise-Plan",
+        "starting_at": "Ab"
+    }
+}
