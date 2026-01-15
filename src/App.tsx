@@ -5,6 +5,7 @@ import { initGA } from './lib/analytics';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import CookieConsentBanner from './components/CookieConsentBanner';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -37,6 +38,8 @@ const PageLoader = () => (
   </div>
 );
 
+
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/aryan');
@@ -48,6 +51,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </main>
       {!isAdmin && <Footer />}
+      <CookieConsentBanner />
     </div>
   );
 };
