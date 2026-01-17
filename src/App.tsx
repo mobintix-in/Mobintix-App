@@ -29,6 +29,7 @@ const DigitalMarketing = lazy(() => import('./pages/services/DigitalMarketing'))
 const AiMachineLearning = lazy(() => import('./pages/services/AiMachineLearning'));
 const MaintenanceSupport = lazy(() => import('./pages/services/MaintenanceSupport'));
 const BusinessIntelligence = lazy(() => import('./pages/services/BusinessIntelligence'));
+const Consulting = lazy(() => import('./pages/services/Consulting'));
 const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'));
 
 // Loading component
@@ -88,6 +89,7 @@ function App() {
                 <Route path="/services/ai-ml" element={<AiMachineLearning />} />
                 <Route path="/services/maintenance-support" element={<MaintenanceSupport />} />
                 <Route path="/services/business-intelligence" element={<BusinessIntelligence />} />
+                <Route path="/services/consulting" element={<Consulting />} />
 
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/contact" element={<Contact />} />

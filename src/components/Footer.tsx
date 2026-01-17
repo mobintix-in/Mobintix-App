@@ -45,13 +45,19 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
-              {['Web Development', 'Mobile Apps', 'UI/UX Design', 'Cloud Solutions', 'Consulting'].map((service) => (
-                <li key={service}>
+              {[
+                { name: 'Web Development', path: '/services/web-development' },
+                { name: 'Mobile Apps', path: '/services/mobile-apps' },
+                { name: 'UI/UX Design', path: '/services/ui-ux-design' },
+                { name: 'Cloud Solutions', path: '/services/cloud-solutions' },
+                { name: 'Consulting', path: '/services/consulting' },
+              ].map((service) => (
+                <li key={service.name}>
                   <Link
-                    to="/services"
+                    to={service.path}
                     className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                   >
-                    {service}
+                    {service.name}
                   </Link>
                 </li>
               ))}

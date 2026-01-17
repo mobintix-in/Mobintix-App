@@ -14,6 +14,7 @@ import {
   Settings,
   BarChart,
   ArrowRight,
+  Briefcase,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -56,6 +57,14 @@ const Services = () => {
       features: ['Cloud Migration', 'DevOps', 'Serverless', 'Auto Scaling'],
       href: '/services/cloud-solutions',
       price: 'Starting from $1,299'
+    },
+    {
+      icon: <Briefcase size={28} />,
+      title: 'Consulting',
+      description: 'Strategic IT consulting to align technology with your business goals.',
+      features: ['Digital Strategy', 'Tech Roadmap', 'Process Optimization', 'Tech Audits'],
+      href: '/services/consulting',
+      price: 'Custom Pricing'
     },
     {
       icon: <ShoppingCart size={28} />,
