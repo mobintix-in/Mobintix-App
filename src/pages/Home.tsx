@@ -4,6 +4,7 @@ import { ArrowRight, Code, Smartphone, Palette, Cloud, TrendingUp, Shield, Check
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useRegion } from '../context/RegionContext';
+// import TechStack from '../components/TechStack';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -176,6 +177,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* <TechStack /> */}
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
