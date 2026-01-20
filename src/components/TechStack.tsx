@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaJava, FaAws, FaDocker, FaJenkins, FaGoogle, FaLinux, FaGitAlt } from 'react-icons/fa';
-import { IconType } from 'react-icons';
 import {
     SiAndroid, SiApple, SiSwift, SiIonic, SiFlutter, SiReact, SiKotlin,
     SiHtml5, SiCss3, SiJavascript, SiTypescript, SiVuedotjs, SiAngular,
@@ -33,17 +32,7 @@ const categories = [
     { id: 'ecommerce', label: 'Ecommerce' },
 ];
 
-interface Technology {
-    name: string;
-    icon: IconType;
-    color: string;
-}
-
-interface TechnologyDictionary {
-    [key: string]: Technology[];
-}
-
-const technologies: TechnologyDictionary = {
+const technologies: any = {
     mobile: [
         { name: 'Android', icon: SiAndroid, color: '#3DDC84' },
         { name: 'iOS', icon: SiApple, color: '#A2AAAD' },
@@ -235,9 +224,8 @@ const TechStack = () => {
                             transition={{ duration: 0.3 }}
                             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-center"
                         >
-                            {technologies[activeCategory]?.map((tech: Technology, index: number) => (
+                            {technologies[activeCategory]?.map((tech: any, index: number) => (
                                 <motion.div
-
                                     key={tech.name}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
