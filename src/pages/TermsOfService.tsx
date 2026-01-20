@@ -118,7 +118,7 @@ const TermsOfService = () => {
                         <div className="space-y-2">
                             <p className="font-semibold text-xl text-blue-600">Mobintix Infotech</p>
                             <p>📧 Email: <a href="mailto:contact@mobintixinfotech.com" className="hover:text-blue-600 transition-colors">contact@mobintixinfotech.com</a></p>
-                            <p>🌐 Website: <a href="https://mobintixinfotech.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">https://mobintixinfotech.vercel.app</a></p>
+                            <p>🌐 Website: <a href="https://www.mobintix.app" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">https://www.mobintix.app</a></p>
                         </div>
                     </section>
                 </div>

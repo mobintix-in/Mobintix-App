@@ -17,7 +17,7 @@ const SEO = ({
     image = '/seo-banner.png',
     children,
 }: SEOProps) => {
-    const siteUrl = 'https://mobintixinfotech.vercel.app';
+    const siteUrl = 'https://www.mobintix.app';
     const fullUrl = `${siteUrl}${url.startsWith('/') ? url : `/${url}`}`;
     const fullImage = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : `/${image}`}`;
 

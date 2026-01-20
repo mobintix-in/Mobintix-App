@@ -7,17 +7,6 @@
     ],
     "redirects": [
         {
-            "source": "/:path*",
-            "has": [
-                {
-                    "type": "host",
-                    "value": "www.mobintixinfotech.vercel.app"
-                }
-            ],
-            "destination": "https://mobintixinfotech.vercel.app/:path*",
-            "permanent": true
-        },
-        {
             "source": "/index.html",
             "destination": "/",
             "permanent": true
