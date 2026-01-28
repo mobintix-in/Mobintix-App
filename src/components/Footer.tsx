@@ -69,14 +69,14 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:mobintix@gmail.com"
+                  href="mailto:contact@mobintix.app"
                   className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                 >
                   <Mail size={16} />
-                  <span>mobintix@gmail.com</span>
+                  <span>contact@mobintix.app</span>
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="mailto:mobintix@zohomail.in"
                   className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm"
@@ -84,7 +84,7 @@ const Footer = () => {
                   <Mail size={16} />
                   <span>mobintix@zohomail.in</span>
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a
                   href="tel:919409383803"
