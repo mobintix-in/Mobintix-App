@@ -94,7 +94,7 @@ const Careers = () => {
                 setPoolMessage({ text: "Success! We'll keep you posted.", type: "success" });
                 setPoolEmail("");
             }
-        } catch (error) {
+        } catch {
             setPoolMessage({ text: "Something went wrong. Try again later.", type: "error" });
         } finally {
             setIsSubmittingPool(false);
@@ -129,7 +129,7 @@ const Careers = () => {
                 setSelectedJob(null);
                 setAppMessage({ text: "", type: "" });
             }, 2000);
-        } catch (error) {
+        } catch {
             setAppMessage({ text: "Failed to submit application. Please try again.", type: "error" });
         } finally {
             setIsSubmittingApp(false);

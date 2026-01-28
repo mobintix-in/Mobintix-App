@@ -308,7 +308,7 @@ const Admin = () => {
             }
             setIsProjectModalOpen(false);
             fetchProjects();
-        } catch (error) {
+        } catch {
             alert("Failed to save project. Please try again.");
         } finally {
             setLoading(false);
@@ -355,7 +355,7 @@ const Admin = () => {
             } else {
                 fetchJobs();
             }
-        } catch (err) {
+        } catch {
             alert("An unexpected error occurred while deleting the job.");
         }
     };
@@ -388,7 +388,7 @@ const Admin = () => {
             }
             setIsJobModalOpen(false);
             fetchJobs();
-        } catch (error) {
+        } catch {
             alert("Failed to save job post. Please try again.");
         } finally {
             setLoading(false);
