@@ -114,7 +114,6 @@ export const RegionProvider = ({ children }: { children: React.ReactNode }) => {
 
             setCurrency(newCurrency);
             i18n.changeLanguage(newLang);
-            console.log(`Region: ${detectedCountry}, Currency: ${newCurrency}, Lang: ${newLang}`);
             setIsLoading(false);
         };
 
@@ -137,6 +136,7 @@ export const RegionProvider = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useRegion = () => {
     const context = useContext(RegionContext);
     if (context === undefined) {

@@ -9,14 +9,14 @@ interface SEOProps {
     children?: React.ReactNode;
 }
 
-const SEO = ({
+export default function SEO({
     title = 'Mobintix Infotech | Web & Mobile App Development Company',
     description = 'Mobintix Infotech is an India-based IT company offering web development, mobile app development, UI/UX design, and scalable digital solutions worldwide.',
     keywords = 'Mobintix Infotech, web development company, mobile app development, Flutter developers India, React development, IT services',
     url = '/',
     image = '/seo-banner.png',
     children,
-}: SEOProps) => {
+}: SEOProps) {
     const siteUrl = 'https://www.mobintix.app';
     const fullUrl = `${siteUrl}${url.startsWith('/') ? url : `/${url}`}`;
     const fullImage = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : `/${image}`}`;
@@ -125,6 +125,5 @@ const SEO = ({
             {children}
         </Helmet>
     );
-};
+}
 
-export default SEO;

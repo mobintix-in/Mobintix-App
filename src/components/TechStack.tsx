@@ -19,6 +19,12 @@ import {
     SiRabbitmq, SiApachekafka, SiNginx, SiApache
 } from 'react-icons/si';
 
+interface Tech {
+    name: string;
+    icon: React.ElementType;
+    color: string;
+}
+
 const categories = [
     { id: 'mobile', label: 'Mobile App' },
     { id: 'frontend', label: 'Front End' },
@@ -30,9 +36,11 @@ const categories = [
     { id: 'devops', label: 'DevOps' },
     { id: 'design', label: 'Design' },
     { id: 'ecommerce', label: 'Ecommerce' },
-];
+] as const;
 
-const technologies: any = {
+type CategoryId = (typeof categories)[number]['id'];
+
+const technologies: Record<CategoryId, Tech[]> = {
     mobile: [
         { name: 'Android', icon: SiAndroid, color: '#3DDC84' },
         { name: 'iOS', icon: SiApple, color: '#A2AAAD' },
@@ -161,49 +169,55 @@ const TechStack = () => {
     const [activeCategory, setActiveCategory] = useState('mobile');
 
     return (
-        <section className="bg-black py-24 relative overflow-hidden">
+        <section className="bg-black py-32 relative overflow-hidden border-t border-white/5">
             {/* Background Effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900/40 via-black to-black pointer-events-none"></div>
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-black to-black pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
+                <div className="text-center mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="inline-block px-4 py-1.5 rounded-full glass border border-white/10 mb-6"
+                    >
+                        <span className="text-xs font-bold uppercase tracking-widest text-blue-400">Our Arsenal</span>
+                    </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6"
+                        className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-6"
                     >
-                        Our Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Stack</span>
+                        The Technology <span className="text-gradient">Stack</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-gray-400 text-lg max-w-2xl mx-auto"
+                        className="text-gray-400 text-lg max-w-2xl mx-auto italic"
                     >
-                        We use the latest tools and frameworks to build scalable, high-performance applications.
+                        Engineered with the most powerful tools in the modern ecosystem.
                     </motion.p>
                 </div>
 
                 {/* Categories Navigation */}
-                <div className="max-w-7xl mx-auto mb-16">
-                    <div className="flex flex-wrap justify-center gap-3">
+                <div className="max-w-7xl mx-auto mb-20 overflow-x-auto no-scrollbar pb-4">
+                    <div className="flex justify-start md:justify-center gap-3 min-w-max px-4">
                         {categories.map((category) => (
                             <button
                                 key={category.id}
                                 onClick={() => setActiveCategory(category.id)}
-                                className={`relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category.id
-                                    ? 'text-white shadow-[0_0_20px_rgba(59,130,246,0.5)]'
-                                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                className={`relative px-8 py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-500 ${activeCategory === category.id
+                                    ? 'text-white'
+                                    : 'text-gray-500 hover:text-white glass-dark'
                                     }`}
                             >
                                 {activeCategory === category.id && (
                                     <motion.div
                                         layoutId="activeTab"
-                                        className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
+                                        className="absolute inset-0 bg-blue-600 rounded-full shadow-[0_0_30px_rgba(37,99,235,0.4)]"
                                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                     />
                                 )}
@@ -214,42 +228,39 @@ const TechStack = () => {
                 </div>
 
                 {/* Tech Grid */}
-                <div className="min-h-[400px]">
+                <div className="min-h-[500px]">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeCategory}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            transition={{ duration: 0.3 }}
-                            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-center"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.4 }}
+                            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
                         >
-                            {technologies[activeCategory]?.map((tech: any, index: number) => (
+                            {(technologies[activeCategory as CategoryId] || []).map((tech, index) => (
                                 <motion.div
                                     key={tech.name}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.05 }}
-                                    className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl flex flex-col items-center justify-center gap-4 hover:border-blue-500/50 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: index * 0.03 }}
+                                    className="group relative glass-dark p-8 rounded-[32px] flex flex-col items-center justify-center gap-6 border border-white/5 hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
                                 >
-                                    {/* Icon Glow Effect */}
-                                    <div
-                                        className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 rounded-2xl transition-all duration-500"
-                                    />
+                                    {/* Grain Effect */}
+                                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 group-hover:opacity-20 transition-opacity" />
 
-                                    <div className="relative p-4 rounded-xl bg-black/50 border border-white/10 group-hover:scale-110 transition-transform duration-300 group-hover:border-blue-500/30">
+                                    <div className="relative group-hover:scale-125 transition-transform duration-500">
                                         <tech.icon
-                                            className="text-4xl transition-all duration-300 filter grayscale group-hover:grayscale-0"
-                                            style={{ color: tech.color }} // Note: styled via style prop to keep color logic simple, but grayscale normally overrides it. Using internal filter.
+                                            className="text-5xl transition-all duration-500 filter drop-shadow-lg"
+                                            style={{ color: tech.color }}
                                         />
-                                        {/* Colored shadow on hover */}
                                         <div
-                                            className="absolute inset-0 opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-300"
+                                            className="absolute inset-0 opacity-0 group-hover:opacity-50 blur-2xl transition-opacity duration-500"
                                             style={{ backgroundColor: tech.color }}
-                                        ></div>
+                                        />
                                     </div>
 
-                                    <span className="text-gray-400 text-sm font-medium group-hover:text-white transition-colors relative z-10">
+                                    <span className="text-gray-400 text-sm font-bold group-hover:text-white transition-colors relative z-10 tracking-tight">
                                         {tech.name}
                                     </span>
                                 </motion.div>

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { supabase } from "../lib/supabase";
+import { type Session } from "@supabase/supabase-js";
 import {
     Trash2, Edit, Plus, X, LogOut, MessageSquare, Briefcase,
     LayoutDashboard, Search, User, Settings, Menu, Download,
@@ -30,7 +31,7 @@ interface Project {
 
 const Admin = () => {
     const navigate = useNavigate();
-    const [session, setSession] = useState<any>(null);
+    const [session, setSession] = useState<Session | null>(null);
     const [activeTab, setActiveTab] = useState("dashboard");
     const [messages, setMessages] = useState<Message[]>([]);
     const [projects, setProjects] = useState<Project[]>([]);
@@ -54,6 +55,28 @@ const Admin = () => {
         link: "",
     });
 
+    const fetchProjects = useCallback(async () => {
+        const { data } = await supabase
+            .from("projects")
+            .select("*")
+            .order("id", { ascending: true });
+        if (data) setProjects(data);
+    }, []);
+
+    const fetchMessages = useCallback(async () => {
+        const { data } = await supabase
+            .from("contact_messages")
+            .select("*")
+            .order("created_at", { ascending: false });
+        if (data) setMessages(data as Message[]);
+    }, []);
+
+    const fetchData = useCallback(async () => {
+        setLoading(true);
+        await Promise.all([fetchMessages(), fetchProjects()]);
+        setLoading(false);
+    }, [fetchMessages, fetchProjects]);
+
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session);
@@ -68,29 +91,7 @@ const Admin = () => {
         });
 
         return () => subscription.unsubscribe();
-    }, []);
-
-    const fetchData = async () => {
-        setLoading(true);
-        await Promise.all([fetchMessages(), fetchProjects()]);
-        setLoading(false);
-    };
-
-    const fetchMessages = async () => {
-        const { data } = await supabase
-            .from("contact_messages")
-            .select("*")
-            .order("created_at", { ascending: false });
-        if (data) setMessages(data as Message[]);
-    };
-
-    const fetchProjects = async () => {
-        const { data } = await supabase
-            .from("projects")
-            .select("*")
-            .order("id", { ascending: true });
-        if (data) setProjects(data);
-    };
+    }, [fetchData]);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -145,9 +146,10 @@ const Admin = () => {
             } else {
                 fetchProjects();
             }
-        } catch (err: any) {
+        } catch (err) {
             console.error("Unexpected error:", err);
-            alert(`An unexpected error occurred: ${err.message || err}`);
+            const errorMessage = err instanceof Error ? err.message : String(err);
+            alert(`An unexpected error occurred: ${errorMessage}`);
         }
     };
 
@@ -205,8 +207,9 @@ const Admin = () => {
                 .getPublicUrl(filePath);
 
             setProjectForm(prev => ({ ...prev, image: data.publicUrl }));
-        } catch (error: any) {
-            alert('Error uploading image: ' + error.message);
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            alert('Error uploading image: ' + errorMessage);
         } finally {
             setLoading(false);
         }
