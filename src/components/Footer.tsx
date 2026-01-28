@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Services', 'Projects', 'Careers', 'Contact'].map((item) => (
+              {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
                     to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
@@ -164,6 +164,9 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm md:pr-32">
           <p className="text-gray-400">&copy; {currentYear} Mobintix Infotech. All rights reserved.</p>
           <div className="flex gap-6">
+            <Link to="/Careers" className="text-gray-400 hover:text-white transition-colors duration-300">
+              Careers
+            </Link>
             <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors duration-300">
               Privacy Policy
             </Link>
