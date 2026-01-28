@@ -127,7 +127,7 @@ const PrivacyPolicy = () => {
                         <div className="space-y-2">
                             <p className="font-semibold text-xl text-blue-600">Mobintix Infotech</p>
                             <p>📧 Email: <a href="mailto:contact@mobintix.app" className="hover:text-blue-600 transition-colors">contact@mobintix.app</a></p>
-                            <p>🌐 Website: <a href="https://www.mobintix.app" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">https://www.mobintix.app</a></p>
+                            <p>🌐 Website: <a href="https://www.mobintix.app" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">www.mobintix.app</a></p>
                             <p>📍 India</p>
                         </div>
                     </section>
