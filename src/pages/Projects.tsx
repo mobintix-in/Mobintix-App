@@ -87,7 +87,6 @@ const Projects = () => {
 
       if (error) {
         // If error (e.g. missing credentials), fall back to static data
-        console.warn('Supabase fetch failed, using fallback data:', error);
         setProjects(fallbackProjects);
       } else if (data && data.length > 0) {
         setProjects(data);

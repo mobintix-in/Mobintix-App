@@ -50,8 +50,7 @@ export const RegionProvider = ({ children }: { children: React.ReactNode }) => {
                 // Try Primary API
                 const response = await axios.get('https://ipapi.co/json/', { timeout: 5000 });
                 detectedCountry = response.data.country_code;
-            } catch (error) {
-                console.warn("Primary IP API failed, trying fallback...", error);
+            } catch {
                 try {
                     // Try Fallback API (ipwho.is)
                     const response = await axios.get('https://ipwho.is/', { timeout: 5000 });
