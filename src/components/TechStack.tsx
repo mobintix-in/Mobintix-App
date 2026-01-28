@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaJava, FaAws, FaDocker, FaJenkins, FaGoogle, FaLinux, FaGitAlt } from 'react-icons/fa';
 import {
     SiAndroid, SiApple, SiSwift, SiIonic, SiFlutter, SiReact, SiKotlin,
@@ -26,8 +26,8 @@ interface Tech {
 }
 
 const categories = [
-    { id: 'mobile', label: 'Mobile App' },
-    { id: 'frontend', label: 'Front End' },
+    { id: 'mobile', label: 'Mobile' },
+    { id: 'frontend', label: 'Frontend' },
     { id: 'backend', label: 'Backend' },
     { id: 'frameworks', label: 'Frameworks' },
     { id: 'ai_ml', label: 'AI & ML' },
@@ -166,175 +166,69 @@ const technologies: Record<CategoryId, Tech[]> = {
 };
 
 const Card = ({ tech }: { tech: Tech }) => {
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const onMouseMove = ({ currentTarget, clientX, clientY }: React.MouseEvent) => {
-        const { left, top } = currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
-    };
-
     return (
         <motion.div
-            onMouseMove={onMouseMove}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            className="group relative h-48 rounded-3xl border border-white/10 bg-white/5 p-8 transition-colors hover:border-white/20 hover:bg-white/10 overflow-hidden"
+            whileHover={{ y: -5 }}
+            className="group flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300"
         >
-            <motion.div
-                className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
-                style={{
-                    background: useTransform(
-                        [mouseX, mouseY],
-                        ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, ${tech.color}33, transparent 80%)`
-                    ),
-                }}
-            />
-
-            <div className="relative flex h-full flex-col items-center justify-center gap-4">
-                <div className="relative">
-                    <tech.icon
-                        className="text-6xl transition-transform duration-500 group-hover:scale-110"
-                        style={{ color: tech.color }}
-                    />
-                    <div
-                        className="absolute inset-0 blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
-                        style={{ backgroundColor: tech.color }}
-                    />
-                </div>
-                <span className="text-sm font-medium tracking-tight text-gray-400 group-hover:text-white transition-colors">
-                    {tech.name}
-                </span>
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/[0.03] group-hover:scale-110 transition-transform duration-300">
+                <tech.icon
+                    className="text-2xl"
+                    style={{ color: tech.color }}
+                />
             </div>
-
-            {/* Corner Accent */}
-            <div
-                className="absolute top-0 right-0 w-16 h-16 opacity-10 group-hover:opacity-30 transition-opacity"
-                style={{
-                    background: `radial-gradient(circle at top right, ${tech.color}, transparent 70%)`
-                }}
-            />
+            <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+                {tech.name}
+            </span>
         </motion.div>
     );
 };
 
 const TechStack = () => {
     const [activeCategory, setActiveCategory] = useState<CategoryId>('mobile');
-    const containerRef = useRef<HTMLDivElement>(null);
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            if (!containerRef.current) return;
-            const { left, top } = containerRef.current.getBoundingClientRect();
-            mouseX.set(e.clientX - left);
-            mouseY.set(e.clientY - top);
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, [mouseX, mouseY]);
 
     return (
-        <section
-            ref={containerRef}
-            className="relative min-h-screen w-full bg-[#030303] py-24 md:py-32 overflow-hidden"
-        >
-            {/* Premium Background Effects */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div
-                    className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full opacity-20 blur-[120px] mix-blend-screen animate-pulse"
-                    style={{ background: 'conic-gradient(from 0deg, #3b82f6, #8b5cf6, #3b82f6)' }}
-                />
-                <div
-                    className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full opacity-10 blur-[120px] mix-blend-screen"
-                    style={{ background: 'conic-gradient(from 0deg, #ec4899, #8b5cf6, #ec4899)' }}
-                />
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] brightness-200" />
-
-                {/* Spotlight effect */}
-                <motion.div
-                    className="absolute inset-0 z-0 opacity-40 pointer-events-none"
-                    style={{
-                        background: useTransform(
-                            [mouseX, mouseY],
-                            ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, rgba(59, 130, 246, 0.05), transparent 80%)`
-                        )
-                    }}
-                />
-            </div>
-
-            <div className="container relative z-10 mx-auto px-6">
-                <div className="max-w-4xl mx-auto text-center mb-24">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl mb-8"
-                    >
-                        <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-white/60">Expertise Ecosystem</span>
-                    </motion.div>
-
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                        className="text-6xl md:text-8xl font-bold text-white tracking-tighter mb-8"
-                    >
-                        Future-Ready <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">Technology Stack</span>
-                    </motion.h2>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-2xl mx-auto"
-                    >
-                        Leveraging cutting-edge tools and frameworks to architect scalable,
-                        high-performance digital solutions that define tomorrow.
-                    </motion.p>
+        <section className="bg-[#080808] py-24 px-6 border-t border-white/5">
+            <div className="max-w-7xl mx-auto">
+                {/* Simple Header */}
+                <div className="mb-16">
+                    <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+                        Tech Stack
+                    </h2>
+                    <p className="text-gray-500 max-w-xl">
+                        A curated selection of modern technologies we use to build high-performance
+                        digital products and scalable infrastructure.
+                    </p>
                 </div>
 
-                {/* Categories Navigation */}
-                <div className="flex flex-wrap justify-center gap-4 mb-20">
+                {/* Simplified Tabs */}
+                <div className="flex flex-wrap gap-2 mb-12">
                     {categories.map((category) => (
                         <button
                             key={category.id}
                             onClick={() => setActiveCategory(category.id)}
-                            className={`group relative px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${activeCategory === category.id
-                                ? 'text-white'
-                                : 'text-gray-500 hover:text-gray-300'
+                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${activeCategory === category.id
+                                    ? 'bg-white text-black'
+                                    : 'text-gray-500 hover:text-gray-300 bg-white/[0.02] hover:bg-white/[0.05]'
                                 }`}
                         >
-                            {activeCategory === category.id && (
-                                <motion.div
-                                    layoutId="active-pill"
-                                    className="absolute inset-0 bg-white shadow-[0_0_20px_rgba(255,255,255,0.2)] rounded-2xl"
-                                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                />
-                            )}
-                            <span className={`relative z-10 ${activeCategory === category.id ? 'text-black' : ''}`}>
-                                {category.label}
-                            </span>
+                            {category.label}
                         </button>
                     ))}
                 </div>
 
-                {/* Tech Grid */}
-                <div className="min-h-[600px]">
+                {/* Clean Grid */}
+                <div className="min-h-[400px]">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeCategory}
-                            initial={{ opacity: 0, x: 20 }}
+                            initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -20 }}
-                            transition={{ duration: 0.5, ease: "circOut" }}
-                            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6"
+                            exit={{ opacity: 0, x: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
                         >
                             {technologies[activeCategory].map((tech) => (
                                 <Card key={`${activeCategory}-${tech.name}`} tech={tech} />
