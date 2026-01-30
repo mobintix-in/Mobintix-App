@@ -47,7 +47,7 @@ const PageLoader = () => (
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isAdmin = location.pathname.startsWith('/aryan');
+  const isAdmin = location.pathname.startsWith('/admin-76d33-secure-access');
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -102,7 +102,7 @@ function App() {
                 <Route path="/terms-of-service" element={<TermsOfService />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/aryan" element={<Admin />} />
+                <Route path="/admin-76d33-secure-access" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <WhatsAppButton />
