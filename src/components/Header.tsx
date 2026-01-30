@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-500 ${isScrolled || location.pathname === '/privacy-policy' || location.pathname === '/terms-of-service'
+      className={`fixed w-full top-0 z-50 transition-all duration-500 ${isScrolled || location.pathname === '/privacy-policy' || location.pathname === '/terms-of-service' || location.pathname.startsWith('/blog/')
         ? 'bg-black shadow-lg py-4'
         : 'bg-transparent py-6'
         }`}

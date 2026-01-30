@@ -4,7 +4,7 @@ import { type Session } from "@supabase/supabase-js";
 import {
     Trash2, Edit, Plus, X, LogOut, MessageSquare, Briefcase,
     LayoutDashboard, Search, User, Settings, Menu, Download,
-    TrendingUp, ExternalLink, Image as ImageIcon, Calendar, Users
+    TrendingUp, ExternalLink, Image as ImageIcon, Calendar, Users, FileText
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import * as XLSX from 'xlsx';
@@ -30,9 +30,9 @@ interface Project {
     title: string;
     category: string;
     description: string;
-    image: string;
-    tags: string[];
-    link: string;
+    image: string | null;
+    tags: string[] | null;
+    link: string | null;
 }
 
 interface Job {
@@ -59,6 +59,20 @@ interface JobApplication {
     portfolio_link: string;
 }
 
+interface Blog {
+    id: number;
+    created_at: string;
+    slug: string;
+    title: string;
+    excerpt: string | null;
+    content: string | null;
+    image: string | null;
+    author: string | null;
+    category: string | null;
+    tags: string[] | null;
+    published: boolean;
+}
+
 const Admin = () => {
     const navigate = useNavigate();
     const [session, setSession] = useState<Session | null>(null);
@@ -66,8 +80,9 @@ const Admin = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [projects, setProjects] = useState<Project[]>([]);
     const [jobs, setJobs] = useState<Job[]>([]);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
     const [talentPool, setTalentPool] = useState<TalentPoolEntry[]>([]);
-    const [applications, setApplications] = useState<JobApplication[]>([]); // Added applications state
+    const [applications, setApplications] = useState<JobApplication[]>([]);
     const [loading, setLoading] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -102,13 +117,28 @@ const Admin = () => {
         category: "Engineering",
     });
 
+    // Blog Form State
+    const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
+    const [editingBlog, setEditingBlog] = useState<Blog | null>(null);
+    const [blogForm, setBlogForm] = useState({
+        title: "",
+        slug: "",
+        excerpt: "",
+        content: "",
+        image: "",
+        author: "Mobintix Team",
+        category: "Tech",
+        tags: "",
+        published: true,
+    });
+
     const fetchProjects = useCallback(async () => {
         const { data, error } = await supabase
             .from("projects")
             .select("*")
             .order("id", { ascending: true });
         if (error) {
-            // Error handling handled by UI or silent fail for now
+            console.error("Error fetching projects:", error);
         } else if (data) {
             setProjects(data as Project[]);
         }
@@ -120,7 +150,7 @@ const Admin = () => {
             .select("*")
             .order("created_at", { ascending: false });
         if (error) {
-            // Error handling handled by UI or silent fail for now
+            console.error("Error fetching messages:", error);
         } else if (data) {
             setMessages(data as Message[]);
         }
@@ -132,7 +162,7 @@ const Admin = () => {
             .select("*")
             .order("id", { ascending: true });
         if (error) {
-            // Error handling handled by UI or silent fail for now
+            console.error("Error fetching jobs:", error);
         } else if (data) {
             setJobs(data as Job[]);
         }
@@ -144,7 +174,7 @@ const Admin = () => {
             .select("*")
             .order("created_at", { ascending: false });
         if (error) {
-            // Error handling handled by UI or silent fail for now
+            console.error("Error fetching talent pool:", error);
         } else if (data) {
             setTalentPool(data as TalentPoolEntry[]);
         }
@@ -156,9 +186,21 @@ const Admin = () => {
             .select("*")
             .order("created_at", { ascending: false });
         if (error) {
-            // Error handling handled by UI or silent fail for now
+            console.error("Error fetching applications:", error);
         } else if (data) {
             setApplications(data as JobApplication[]);
+        }
+    }, []);
+
+    const fetchBlogs = useCallback(async () => {
+        const { data, error } = await supabase
+            .from("blogs")
+            .select("*")
+            .order("created_at", { ascending: false });
+        if (error) {
+            console.error("Error fetching blogs:", error);
+        } else if (data) {
+            setBlogs(data as Blog[]);
         }
     }, []);
 
@@ -169,10 +211,11 @@ const Admin = () => {
             fetchProjects(),
             fetchJobs(),
             fetchTalentPool(),
-            fetchApplications()
+            fetchApplications(),
+            fetchBlogs()
         ]);
         setLoading(false);
-    }, [fetchMessages, fetchProjects, fetchJobs, fetchTalentPool, fetchApplications]);
+    }, [fetchMessages, fetchProjects, fetchJobs, fetchTalentPool, fetchApplications, fetchBlogs]);
 
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
@@ -402,9 +445,9 @@ const Admin = () => {
                 title: project.title,
                 category: project.category,
                 description: project.description,
-                image: project.image,
-                tags: project.tags.join(", "),
-                link: project.link,
+                image: project.image || "",
+                tags: (project.tags || []).join(", "),
+                link: project.link || "",
             });
         } else {
             setEditingProject(null);
@@ -445,6 +488,95 @@ const Admin = () => {
             });
         }
         setIsJobModalOpen(true);
+    };
+
+    const openBlogModal = (blog?: Blog) => {
+        if (blog) {
+            setEditingBlog(blog);
+            setBlogForm({
+                title: blog.title,
+                slug: blog.slug,
+                excerpt: blog.excerpt || "",
+                content: blog.content || "",
+                image: blog.image || "",
+                author: blog.author || "Mobintix Team",
+                category: blog.category || "Tech",
+                tags: (blog.tags || []).join(", "),
+                published: blog.published,
+            });
+            setIsBlogModalOpen(true);
+        } else {
+            setEditingBlog(null);
+            setBlogForm({
+                title: "",
+                slug: "",
+                excerpt: "",
+                content: "",
+                image: "",
+                author: "Mobintix Team",
+                category: "Tech",
+                tags: "",
+                published: true,
+            });
+            setIsBlogModalOpen(true);
+        }
+    };
+
+    const handleSaveBlog = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const tagsArray = blogForm.tags.split(",").map((t) => t.trim()).filter(t => t !== "");
+
+        let slug = blogForm.slug;
+        if (!slug && blogForm.title) {
+            slug = blogForm.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+        }
+
+        const payload = {
+            title: blogForm.title,
+            slug,
+            excerpt: blogForm.excerpt,
+            content: blogForm.content,
+            image: blogForm.image,
+            author: blogForm.author,
+            category: blogForm.category,
+            tags: tagsArray,
+            published: blogForm.published,
+        };
+
+        setLoading(true);
+        try {
+            if (editingBlog) {
+                const { error } = await supabase
+                    .from("blogs")
+                    .update(payload)
+                    .eq("id", editingBlog.id);
+                if (error) throw error;
+            } else {
+                const { error } = await supabase.from("blogs").insert([payload]);
+                if (error) throw error;
+            }
+            setIsBlogModalOpen(false);
+            fetchBlogs();
+        } catch (error) {
+            console.error("Error saving blog:", error);
+            alert("Failed to save blog post. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDeleteBlog = async (id: number) => {
+        if (!window.confirm("Are you sure you want to delete this blog post?")) return;
+        try {
+            const { error } = await supabase.from("blogs").delete().eq("id", id);
+            if (error) {
+                alert(`Failed to delete blog: ${error.message}`);
+            } else {
+                fetchBlogs();
+            }
+        } catch {
+            alert("An unexpected error occurred while deleting the blog.");
+        }
     };
 
     // Dark Mode Login Screen
@@ -561,6 +693,7 @@ const Admin = () => {
                         {[
                             { id: 'dashboard', icon: LayoutDashboard, label: 'Overview' },
                             { id: 'messages', icon: MessageSquare, label: 'Messages' },
+                            { id: 'blogs', icon: FileText, label: 'Blogs' },
                             { id: 'projects', icon: Briefcase, label: 'Projects' },
                             { id: 'jobs', icon: Briefcase, label: 'Jobs' },
                             { id: 'applications', icon: User, label: 'Applications' },
@@ -615,7 +748,7 @@ const Admin = () => {
                         </button>
                         <div>
                             <h2 className="text-xl font-bold text-white tracking-tight">
-                                {activeTab === 'dashboard' ? 'Overview' : activeTab === 'messages' ? 'Inbox' : activeTab === 'projects' ? 'Portfolio' : activeTab === 'jobs' ? 'Job Postings' : activeTab === 'applications' ? 'Applications' : 'Talent Pool'}
+                                {activeTab === 'dashboard' ? 'Overview' : activeTab === 'messages' ? 'Inbox' : activeTab === 'blogs' ? 'Blog Management' : activeTab === 'projects' ? 'Portfolio' : activeTab === 'jobs' ? 'Job Postings' : activeTab === 'applications' ? 'Applications' : 'Talent Pool'}
                             </h2>
                             <p className="text-xs text-gray-500 hidden sm:block">
                                 {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
@@ -665,6 +798,20 @@ const Admin = () => {
                                         <div className="mt-4 flex items-center text-xs font-medium text-blue-400 bg-blue-500/10 w-fit px-2 py-1 rounded-lg">
                                             <Calendar size={14} className="mr-1" />
                                             All Time
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-[#111] p-6 rounded-3xl border border-[#222] relative overflow-hidden group hover:border-[#333] transition-colors">
+                                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
+                                        <FileText size={80} />
+                                    </div>
+                                    <div className="relative z-10">
+                                        <p className="text-sm font-medium text-gray-400 mb-1">Total Blogs</p>
+                                        <h3 className="text-4xl font-bold text-white tracking-tight">{blogs.length}</h3>
+                                        <div className="mt-4 flex items-center text-xs font-medium text-pink-400 bg-pink-500/10 w-fit px-2 py-1 rounded-lg">
+                                            <TrendingUp size={14} className="mr-1" />
+                                            Published Posts
                                         </div>
                                     </div>
                                 </div>
@@ -826,6 +973,108 @@ const Admin = () => {
                         </div>
                     )}
 
+                    {/* BLOGS TAB */}
+                    {activeTab === 'blogs' && (
+                        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <h2 className="text-2xl font-bold text-white">Blog Management</h2>
+                                    <p className="text-gray-500 text-sm mt-1">Create and manage your blog posts.</p>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="relative w-64 hidden xl:block">
+                                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={16} />
+                                        <input
+                                            type="text"
+                                            placeholder="Search blogs..."
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="w-full pl-10 pr-4 py-2 bg-[#111] border border-[#222] rounded-xl text-sm text-white focus:outline-none focus:border-blue-500"
+                                        />
+                                    </div>
+                                    <button
+                                        onClick={() => openBlogModal()}
+                                        className="flex items-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                                    >
+                                        <Plus size={20} />
+                                        <span>New Post</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                                {blogs
+                                    .filter(b =>
+                                        b.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                        b.category?.toLowerCase().includes(searchQuery.toLowerCase())
+                                    )
+                                    .map((blog) => (
+                                        <div key={blog.id} className="group bg-[#111] rounded-3xl overflow-hidden border border-[#222] hover:border-[#333] transition-all hover:-translate-y-1 hover:shadow-2xl flex flex-col h-full">
+                                            <div className="relative h-48 overflow-hidden bg-[#1a1a1a]">
+                                                {blog.image ? (
+                                                    <img
+                                                        src={blog.image}
+                                                        alt={blog.title}
+                                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center text-gray-700">
+                                                        <ImageIcon size={48} />
+                                                    </div>
+                                                )}
+                                                <div className="absolute top-4 right-4">
+                                                    <span className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-lg backdrop-blur-md shadow-lg ${blog.published ? 'bg-green-500/90 text-white' : 'bg-yellow-500/90 text-black'}`}>
+                                                        {blog.published ? 'Published' : 'Draft'}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div className="p-6 flex flex-col flex-1">
+                                                <div className="flex justify-between items-start mb-2">
+                                                    <span className="text-xs text-blue-400 font-bold uppercase tracking-wider">{blog.category}</span>
+                                                    <span className="text-xs text-gray-600">{new Date(blog.created_at).toLocaleDateString()}</span>
+                                                </div>
+
+                                                <h3 className="text-lg font-bold text-white mb-2 leading-tight line-clamp-2 group-hover:text-blue-400 transition-colors">
+                                                    {blog.title}
+                                                </h3>
+
+                                                <p className="text-sm text-gray-500 line-clamp-3 mb-6 bg-transparent">
+                                                    {blog.excerpt || "No excerpt provided..."}
+                                                </p>
+
+                                                <div className="mt-auto flex justify-between items-center border-t border-[#222] pt-4">
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-xs text-gray-400 font-bold">
+                                                            {blog.author ? blog.author.charAt(0) : 'M'}
+                                                        </div>
+                                                        <span className="text-xs text-gray-500 truncate max-w-[100px]">{blog.author || 'Team'}</span>
+                                                    </div>
+
+                                                    <div className="flex gap-2">
+                                                        <button
+                                                            onClick={() => openBlogModal(blog)}
+                                                            className="p-2 text-gray-400 hover:text-white hover:bg-[#1a1a1a] rounded-lg transition-colors"
+                                                            title="Edit"
+                                                        >
+                                                            <Edit size={16} />
+                                                        </button>
+                                                        <button
+                                                            onClick={() => handleDeleteBlog(blog.id)}
+                                                            className="p-2 text-gray-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                                                            title="Delete"
+                                                        >
+                                                            <Trash2 size={16} />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                            </div>
+                        </div>
+                    )}
+
                     {/* PROJECTS TAB */}
                     {activeTab === 'projects' && (
                         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -860,7 +1109,7 @@ const Admin = () => {
                                     .filter(p =>
                                         p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                                         p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                        p.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()))
+                                        (p.tags && p.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase())))
                                     )
                                     .map((project) => (
                                         <div key={project.id} className="group bg-[#111] rounded-3xl overflow-hidden border border-[#222] hover:border-[#333] transition-all hover:-translate-y-1 hover:shadow-2xl">
@@ -898,12 +1147,12 @@ const Admin = () => {
                                                 <p className="text-sm text-gray-500 line-clamp-2 mb-4 h-10">{project.description}</p>
 
                                                 <div className="flex flex-wrap gap-2">
-                                                    {project.tags.slice(0, 3).map((tag, i) => (
+                                                    {(project.tags || []).slice(0, 3).map((tag, i) => (
                                                         <span key={i} className="text-[10px] text-gray-400 bg-[#1a1a1a] px-2 py-1 rounded border border-[#2a2a2a]">
                                                             {tag}
                                                         </span>
                                                     ))}
-                                                    {project.tags.length > 3 && <span className="text-[10px] text-gray-500 py-1">+ {project.tags.length - 3}</span>}
+                                                    {(project.tags || []).length > 3 && <span className="text-[10px] text-gray-500 py-1">+ {(project.tags || []).length - 3}</span>}
                                                 </div>
                                             </div>
                                         </div>
@@ -1454,6 +1703,122 @@ const Admin = () => {
                                         className="px-8 py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {loading ? "Saving..." : (editingJob ? "Save Changes" : "Post Job")}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Blog Modal */}
+            {isBlogModalOpen && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                    <div className="bg-[#111] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#222] animate-in fade-in zoom-in duration-200">
+                        <div className="p-8">
+                            <div className="flex justify-between items-center mb-8 border-b border-[#222] pb-6">
+                                <div>
+                                    <h3 className="text-2xl font-bold text-white">
+                                        {editingBlog ? "Edit Blog Post" : "New Blog Post"}
+                                    </h3>
+                                    <p className="text-gray-500 text-sm mt-1">Manage your blog content.</p>
+                                </div>
+                                <button onClick={() => setIsBlogModalOpen(false)} className="p-2 hover:bg-[#1a1a1a] rounded-full transition-colors text-gray-400">
+                                    <X size={24} />
+                                </button>
+                            </div>
+
+                            <form onSubmit={handleSaveBlog} className="space-y-6">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-400">Title</label>
+                                    <input
+                                        type="text"
+                                        value={blogForm.title}
+                                        onChange={(e) => setBlogForm({ ...blogForm, title: e.target.value })}
+                                        className="w-full p-3 bg-[#0a0a0a] border border-[#222] rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-medium"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-gray-400">Category</label>
+                                        <input
+                                            type="text"
+                                            value={blogForm.category}
+                                            onChange={(e) => setBlogForm({ ...blogForm, category: e.target.value })}
+                                            className="w-full p-3 bg-[#0a0a0a] border border-[#222] rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-gray-400">Author</label>
+                                        <input
+                                            type="text"
+                                            value={blogForm.author}
+                                            onChange={(e) => setBlogForm({ ...blogForm, author: e.target.value })}
+                                            className="w-full p-3 bg-[#0a0a0a] border border-[#222] rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-400">Cover Image URL</label>
+                                    <input
+                                        type="url"
+                                        value={blogForm.image}
+                                        onChange={(e) => setBlogForm({ ...blogForm, image: e.target.value })}
+                                        className="w-full p-3 bg-[#0a0a0a] border border-[#222] rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                        placeholder="https://..."
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-400">Excerpt</label>
+                                    <textarea
+                                        value={blogForm.excerpt}
+                                        onChange={(e) => setBlogForm({ ...blogForm, excerpt: e.target.value })}
+                                        className="w-full p-3 bg-[#0a0a0a] border border-[#222] rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
+                                        rows={3}
+                                    ></textarea>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-400">Content</label>
+                                    <textarea
+                                        value={blogForm.content}
+                                        onChange={(e) => setBlogForm({ ...blogForm, content: e.target.value })}
+                                        className="w-full p-3 bg-[#0a0a0a] border border-[#222] rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-sm"
+                                        rows={10}
+                                        required
+                                    ></textarea>
+                                </div>
+
+                                <div className="flex items-center gap-4">
+                                    <label className="flex items-center gap-2 cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            checked={blogForm.published}
+                                            onChange={(e) => setBlogForm({ ...blogForm, published: e.target.checked })}
+                                            className="w-4 h-4 rounded border-gray-600 bg-[#0a0a0a] text-blue-500 focus:ring-blue-500 focus:ring-offset-gray-900"
+                                        />
+                                        <span className="text-sm font-medium text-gray-400">Published</span>
+                                    </label>
+                                </div>
+
+                                <div className="flex justify-end space-x-4 pt-6 mt-6 border-t border-[#222]">
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsBlogModalOpen(false)}
+                                        className="px-6 py-3 text-gray-400 font-medium hover:bg-[#1a1a1a] hover:text-white rounded-xl transition-colors"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="px-8 py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {loading ? "Saving..." : (editingBlog ? "Save Changes" : "Save Blog")}
                                     </button>
                                 </div>
                             </form>

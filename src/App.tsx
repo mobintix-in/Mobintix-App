@@ -31,7 +31,10 @@ const AiMachineLearning = lazy(() => import('./pages/services/AiMachineLearning'
 const MaintenanceSupport = lazy(() => import('./pages/services/MaintenanceSupport'));
 const BusinessIntelligence = lazy(() => import('./pages/services/BusinessIntelligence'));
 const Consulting = lazy(() => import('./pages/services/Consulting'));
+
 const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
 
 // Loading component
 const PageLoader = () => (
@@ -97,6 +100,8 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/aryan" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

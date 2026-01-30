@@ -8,8 +8,8 @@ interface Project {
   title: string;
   category: string;
   description: string;
-  image: string;
-  tags: string[];
+  image: string | null;
+  tags: string[] | null;
   link: string;
 }
 
@@ -169,16 +169,18 @@ const Projects = () => {
                     animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                   }}
                 >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                  {project.image && (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
                     <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
                     <p className="text-gray-300 text-sm mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag, idx) => (
+                      {project.tags?.map((tag, idx) => (
                         <span
                           key={idx}
                           className="text-xs bg-white/20 text-white px-3 py-1 backdrop-blur-sm rounded-full"

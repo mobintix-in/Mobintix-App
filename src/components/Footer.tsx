@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item) => (
+              {['Home', 'About', 'Services', 'Projects', 'Blog', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
                     to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
@@ -76,15 +76,7 @@ const Footer = () => {
                   <span>contact@mobintix.app</span>
                 </a>
               </li>
-              {/* <li>
-                <a
-                  href="mailto:mobintix@zohomail.in"
-                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-                >
-                  <Mail size={16} />
-                  <span>mobintix@zohomail.in</span>
-                </a>
-              </li> */}
+
               <li>
                 <a
                   href="tel:919409383803"
