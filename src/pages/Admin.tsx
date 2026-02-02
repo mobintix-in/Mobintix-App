@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import * as XLSX from 'xlsx';
 
-interface TalentPoolEntry {
+export interface TalentPoolEntry {
     id: number;
     created_at: string;
     email: string;
@@ -1462,6 +1462,10 @@ const Admin = () => {
                                             <option>Mobile</option>
                                             <option>Design</option>
                                             <option>E-Commerce</option>
+                                            <option>IoT</option>
+                                            <option>Web3</option>
+                                            <option>AI</option>
+                                            <option>Other</option>
                                         </select>
                                     </div>
                                 </div>

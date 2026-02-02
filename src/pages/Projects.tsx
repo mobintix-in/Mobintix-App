@@ -21,7 +21,7 @@ const fallbackProjects: Project[] = [
     description: 'A full-featured online store with payment integration, inventory management, and admin dashboard.',
     image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1470',
     tags: ['Next.js', 'Stripe', 'Tailwind CSS'],
-    link: '#'
+    link: 'https://mobintix.app/contact'
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const fallbackProjects: Project[] = [
     description: 'Patient management system with appointment scheduling and telemedicine features.',
     image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1470',
     tags: ['Flutter', 'Firebase', 'WebRTC'],
-    link: '#'
+    link: 'https://mobintix.app/contact'
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const fallbackProjects: Project[] = [
     description: 'Property listing platform with advanced search, virtual tours, and agent portal.',
     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1373',
     tags: ['React', 'Node.js', 'MongoDB'],
-    link: '#'
+    link: 'https://mobintix.app/contact'
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const fallbackProjects: Project[] = [
     description: 'Modern financial analytics dashboard with real-time data visualization.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1470',
     tags: ['UI/UX', 'Figma', 'React'],
-    link: '#'
+    link: 'https://mobintix.app/contact'
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const fallbackProjects: Project[] = [
     description: 'Community platform connecting users with similar interests.',
     image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1374',
     tags: ['React Native', 'GraphQL', 'AWS'],
-    link: '#'
+    link: 'https://mobintix.app/contact'
   },
   {
     id: 6,
@@ -66,7 +66,7 @@ const fallbackProjects: Project[] = [
     description: 'Professional corporate identity website for a multinational firm.',
     image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1470',
     tags: ['Gatsby', 'Sanity', 'Animation'],
-    link: '#'
+    link: 'https://mobintix.app/contact'
   }
 ];
 
@@ -107,7 +107,7 @@ const Projects = () => {
     fetchProjects();
   }, [fetchProjects]);
 
-  const categories = ['All', 'Web', 'Mobile', 'Design', 'E-Commerce'];
+  const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category))).filter(Boolean)];
 
   // Calculate filtered projects based on state
   const filteredProjects =
