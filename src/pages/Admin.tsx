@@ -389,6 +389,37 @@ const Admin = () => {
         }
     };
 
+    const handleBlogImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files.length === 0) return;
+
+        const file = e.target.files[0];
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Math.random()}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        setLoading(true);
+        try {
+            const { error: uploadError } = await supabase.storage
+                .from('project-images') // Re-using project-images bucket
+                .upload(filePath, file);
+
+            if (uploadError) {
+                throw uploadError;
+            }
+
+            const { data } = supabase.storage
+                .from('project-images') // Re-using project-images bucket
+                .getPublicUrl(filePath);
+
+            setBlogForm(prev => ({ ...prev, image: data.publicUrl }));
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            alert('Error uploading image: ' + errorMessage);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const handleDeleteJob = async (id: number) => {
         if (!window.confirm("Are you sure you want to delete this job post?")) return;
         try {
@@ -1764,14 +1795,54 @@ const Admin = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-400">Cover Image URL</label>
-                                    <input
-                                        type="url"
-                                        value={blogForm.image}
-                                        onChange={(e) => setBlogForm({ ...blogForm, image: e.target.value })}
-                                        className="w-full p-3 bg-[#0a0a0a] border border-[#222] rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                                        placeholder="https://..."
-                                    />
+                                    <label className="text-sm font-medium text-gray-400">Cover Image</label>
+                                    <div className="space-y-4">
+                                        {/* Image Preview */}
+                                        {blogForm.image && (
+                                            <div className="relative w-full h-48 bg-[#0a0a0a] rounded-xl overflow-hidden border border-[#222] group">
+                                                <img
+                                                    src={blogForm.image}
+                                                    alt="Preview"
+                                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setBlogForm({ ...blogForm, image: "" })}
+                                                    className="absolute top-2 right-2 p-1.5 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                                                >
+                                                    <X size={14} />
+                                                </button>
+                                            </div>
+                                        )}
+
+                                        <div className="flex flex-col sm:flex-row gap-4 items-center">
+                                            <div className="flex-1 w-full">
+                                                <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-[#222] border-dashed rounded-xl cursor-pointer bg-[#0a0a0a] hover:bg-[#111] hover:border-blue-500/50 transition-all group">
+                                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                                        <div className="p-3 bg-[#1a1a1a] text-gray-500 rounded-full mb-3 group-hover:text-blue-500 group-hover:bg-blue-500/10 transition-colors">
+                                                            <Plus size={20} />
+                                                        </div>
+                                                        <p className="mb-2 text-sm text-gray-500 group-hover:text-gray-300">Click to upload image</p>
+                                                    </div>
+                                                    <input
+                                                        type="file"
+                                                        className="hidden"
+                                                        accept="image/*"
+                                                        onChange={handleBlogImageUpload}
+                                                    />
+                                                </label>
+                                            </div>
+                                            <div className="w-full sm:w-1/3">
+                                                <input
+                                                    type="url"
+                                                    value={blogForm.image}
+                                                    onChange={(e) => setBlogForm({ ...blogForm, image: e.target.value })}
+                                                    className="w-full p-3 bg-[#0a0a0a] border border-[#222] rounded-xl text-white text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                                                    placeholder="Or image URL..."
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className="space-y-2">
