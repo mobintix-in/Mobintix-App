@@ -158,9 +158,7 @@ values
   ('Luxury Fashion Store', 'E-Commerce', 'High-end e-commerce platform with AR try-on features', 'https://images.pexels.com/photos/972995/pexels-photo-972995.jpeg?auto=compress&cs=tinysrgb&w=800', array['Next.js','Shopify','AR'], 'https://www.mobintix.app/contact'),
   ('SaaS Analytics Platform', 'Web', 'Business intelligence platform for enterprise clients', 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800', array['Angular','Python','PostgreSQL'], 'https://www.mobintix.app/contact'),
   ('Smart Home Automation', 'IoT', 'Mobile app for integrated smart home device control.', 'https://images.pexels.com/photos/4255476/pexels-photo-4255476.jpeg?auto=compress&cs=tinysrgb&w=800', array['Flutter','IoT','MQTT'], 'https://www.mobintix.app/contact'),
-  ('Travel Booking Platform', 'Web', 'Comprehensive travel booking engine with real-time availability.', 'https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=800', array['React','Node.js','PostgreSQL'], 'https://www.mobintix.app/contact'),
-  ('Crypto Exchange Wallet', 'Web3', 'Secure non-custodial wallet for managing crypto assets.', 'https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=800', array['Solidity','Web3.js','Ethereum'], 'https://www.mobintix.app/contact');
-  
+  ('Travel Booking Platform', 'Web', 'Comprehensive travel booking engine with real-time availability.', 'https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=800', array['React','Node.js','PostgreSQL'], 'https://www.mobintix.app/contact');
 
 -- INSERT INITIAL JOBS
 insert into public.jobs (title, category, type, location, description, requirements, salary_range)

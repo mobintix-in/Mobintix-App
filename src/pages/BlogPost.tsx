@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import SEO from '../components/SEO';
 import { ArrowLeft, User, Calendar, Share2 } from 'lucide-react';
+
+import { FaWhatsapp, FaFacebook, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 import ReactMarkdown from 'react-markdown';
 
 interface BlogPost {
@@ -22,6 +24,8 @@ const BlogPost = () => {
     const { slug } = useParams<{ slug: string }>();
     const [post, setPost] = useState<BlogPost | null>(null);
     const [loading, setLoading] = useState(true);
+    const [copied, setCopied] = useState(false);
+    const [socialCopied, setSocialCopied] = useState(false);
 
     useEffect(() => {
         if (slug) fetchPost(slug);
@@ -132,16 +136,85 @@ const BlogPost = () => {
                             <h3 className="text-lg font-bold text-black mb-2">Share this article</h3>
                             <p className="text-gray-500 text-sm">Spread the knowledge with your network</p>
                         </div>
-                        <div className="flex gap-4">
+                        <div className="flex flex-wrap gap-3">
+                            {/* WhatsApp */}
+                            <a
+                                href={`https://wa.me/?text=${encodeURIComponent(post.title + ' ' + window.location.href)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-white p-3 rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all text-gray-700 hover:text-green-500"
+                                title="Share on WhatsApp"
+                            >
+                                <FaWhatsapp size={20} />
+                            </a>
+
+                            {/* Facebook */}
+                            <a
+                                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-white p-3 rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all text-gray-700 hover:text-blue-600"
+                                title="Share on Facebook"
+                            >
+                                <FaFacebook size={20} />
+                            </a>
+
+                            {/* Twitter/X */}
+                            <a
+                                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-white p-3 rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all text-gray-700 hover:text-black"
+                                title="Share on Twitter"
+                            >
+                                <FaTwitter size={20} />
+                            </a>
+
+                            {/* LinkedIn */}
+                            <a
+                                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-white p-3 rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all text-gray-700 hover:text-blue-700"
+                                title="Share on LinkedIn"
+                            >
+                                <FaLinkedin size={20} />
+                            </a>
+
+                            {/* Instagram */}
                             <button
                                 onClick={() => {
                                     navigator.clipboard.writeText(window.location.href);
-                                    alert('Link copied to clipboard!');
+                                    setSocialCopied(true);
+                                    setTimeout(() => setSocialCopied(false), 2000);
                                 }}
-                                className="bg-white p-3 rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all text-gray-700"
+                                className="bg-white p-3 rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all text-gray-700 hover:text-pink-600 relative group"
+                                title="Copy Link for Instagram"
+                            >
+                                <FaInstagram size={20} />
+                                {socialCopied && (
+                                    <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded shadow-lg whitespace-nowrap">
+                                        Link Copied!
+                                    </span>
+                                )}
+                            </button>
+
+                            {/* Copy Link */}
+                            <button
+                                onClick={() => {
+                                    navigator.clipboard.writeText(window.location.href);
+                                    setCopied(true);
+                                    setTimeout(() => setCopied(false), 2000);
+                                }}
+                                className="bg-white p-3 rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all text-gray-700 hover:text-gray-900 relative group"
                                 title="Copy Link"
                             >
                                 <Share2 size={20} />
+                                {copied && (
+                                    <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded shadow-lg whitespace-nowrap">
+                                        Copied!
+                                    </span>
+                                )}
                             </button>
                         </div>
                     </div>
