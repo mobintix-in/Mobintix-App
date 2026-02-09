@@ -23,7 +23,15 @@
     <meta name="twitter:image" content="https://www.mobintix.app/Mobintixtheme.png" />
     <link rel="canonical" href="https://www.mobintix.app/" />
     <link rel="manifest" href="/manifest.json" />
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="/ub003JrnFeyhr02n3cRWQ" async></script>
+    
+    <!-- Performance Optimizations: Resource Hints -->
+    <link rel="preconnect" href="https://analytics.ahrefs.com" crossorigin />
+    <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
+    <link rel="dns-prefetch" href="https://analytics.ahrefs.com" />
+    <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
+    
+    <!-- Load analytics asynchronously (non-blocking) -->
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="/ub003JrnFeyhr02n3cRWQ" defer></script>
 </head>
 
 <body>
