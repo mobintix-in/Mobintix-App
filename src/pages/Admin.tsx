@@ -703,7 +703,7 @@ const Admin = () => {
             <aside className={`fixed inset-y-0 left-0 z-50 w-72 bg-[#0a0a0a] border-r border-[#1a1a1a] transform transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
                 <div className="h-full flex flex-col p-6">
                     <div className="flex items-center gap-3 mb-10 px-2">
-                        <img src="/mobintixlogo.png" alt="Mobintix" className="w-10 h-10 rounded-xl shadow-lg shadow-blue-900/20 shrink-0" />
+                        <img src="/mobintixlogo.webp" alt="Mobintix" width="40" height="40" className="w-10 h-10 rounded-xl shadow-lg shadow-blue-900/20 shrink-0" />
                         <div>
                             <h1 className="text-lg font-bold text-white tracking-tight leading-none">
                                 Mobintix
