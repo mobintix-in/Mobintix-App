@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Facebook, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import OptimizedImage from './OptimizedImage';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,10 +12,13 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-4">
               <Link to="/" className="block">
-                <img
+                <OptimizedImage
                   src="/Mobintix.png"
                   alt="Mobintix Infotech"
+                  width={120}
+                  height={40}
                   className="h-10 w-auto object-contain"
+                  loading="lazy"
                 />
               </Link>
               <h3 className="text-2xl font-bold tracking-wider">
