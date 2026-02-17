@@ -158,7 +158,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm md:pr-32">
-          <p className="text-gray-400">2025-&copy; {currentYear} Mobintix Infotech. All rights reserved.</p>
+          <p className="text-gray-400">&copy; 2025-{currentYear} Mobintix Infotech. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="/careers" className="text-gray-400 hover:text-white transition-colors duration-300">
               Careers
