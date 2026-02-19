@@ -83,8 +83,8 @@ const Contact = () => {
     {
       icon: <Mail size={24} />,
       title: "Email Us",
-      content: "contact@mobintix.app",
-      link: "mailto:contact@mobintix.app",
+      content: "mobintix@gmail.com",
+      link: "mailto:mobintix@gmail.com",
     },
     {
       icon: <Phone size={24} />,
